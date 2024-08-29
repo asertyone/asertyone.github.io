@@ -1,0 +1,2 @@
+echo -e "log-queries=extra\nlog-facility=/tmp/dnsmasq/dnsmasq1.log" >> /tmp/dnsmasq/dnsmasq1.conf; systemctl restart dnsmasq1_service;
+echo -e "log-queries=extra\nlog-facility=/tmp/dnsmasq/dnsmasq2.log" >> /tmp/dnsmasq/dnsmasq2.conf; systemctl restart dnsmasq2_service;
