@@ -1,0 +1,13 @@
+# update file datetime
+touch -t 1806062030 albert.txt
+
+# List timers of systemd
+systemctl list-timers
+
+# systemd-tmpfiles-clean.timer updated, need to systemctl daemon-reload again.
+
+#
+journalctl -ef -u systemd-tmpfiles-clean.service
+
+# check configs, include /etc/tmpfiles.d, /usr/lib/tmpfiles.d and /run/tmpfiles.d
+systemd-tmpfiles --cat-config
