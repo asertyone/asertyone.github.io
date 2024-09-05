@@ -1,0 +1,107 @@
+netstat -h
+usage: netstat [-vWeenNcCF] [<Af>] -r         netstat {-V|--version|-h|--help}
+       netstat [-vWnNcaeol] [<Socket> ...]
+       netstat { [-vWeenNac] -i | [-cnNe] -M | -s [-6tuw] }
+
+        -r, --route              display routing table
+        -i, --interfaces         display interface table
+        -g, --groups             display multicast group memberships
+        -s, --statistics         display networking statistics (like SNMP)
+        -M, --masquerade         display masqueraded connections
+
+        -v, --verbose            be verbose
+        -W, --wide               don't truncate IP addresses
+        -n, --numeric            don't resolve names
+        --numeric-hosts          don't resolve host names
+        --numeric-ports          don't resolve port names
+        --numeric-users          don't resolve user names
+        -N, --symbolic           resolve hardware names
+        -e, --extend             display other/more information
+        -p, --programs           display PID/Program name for sockets
+        -o, --timers             display timers
+        -c, --continuous         continuous listing
+
+        -l, --listening          display listening server sockets
+        -a, --all                display all sockets (default: connected)
+        -F, --fib                display Forwarding Information Base (default)
+        -C, --cache              display routing cache instead of FIB
+        -Z, --context            display SELinux security context for sockets
+
+  <Socket>={-t|--tcp} {-u|--udp} {-U|--udplite} {-S|--sctp} {-w|--raw}
+           {-x|--unix} --ax25 --ipx --netrom
+  <AF>=Use '-6|-4' or '-A <af>' or '--<af>'; default: inet
+  List of possible address families (which support routing):
+    inet (DARPA Internet) inet6 (IPv6) netrom (AMPR NET/ROM)
+
+# netstat -tulnp
+ctive Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 192.168.165.35:4627     0.0.0.0:*               LISTEN      3149/ca_manager
+tcp        0      0 0.0.0.0:805             0.0.0.0:*               LISTEN      1477/tsd.radio.app.
+tcp        0      0 127.0.0.1:5037          0.0.0.0:*               LISTEN      42699/adbd
+tcp        0      0 127.0.0.1:8100          0.0.0.0:*               LISTEN      1082/atfwd_proxy
+tcp        0      0 127.0.0.1:1883          0.0.0.0:*               LISTEN      2419/mosquitto
+tcp        0      0 192.168.177.3:30601     0.0.0.0:*               LISTEN      2312/jn-rmsproxy-se
+
+# fuser 53/tcp
+root@sa525m:~# fuser 53/tcp
+3438 3493 3498
+
+# fuser -m 53/tcp
+root@sa525m:~# fuser -m 53/tcp
+1 263 265 356 363 461 469 737 738 747 871 874 892 935 1082 1181 1389 1392 1404 1410 1414 1431 1434 1460 1473 1476 1477 1479 1480 1482 1489 1513 1514 1533 1536 1539 1590 1603 1610 1677 1691 1695 1697 1965 1974 2027 2107 2266 2270 2272 2276 2288 2291 2292 2312 2313 2370 2419 2574 2664 2675 2939 3083 3114 3116 3122 3125 3144 3149 3154 3261 3304 3356 3438 3493 3498 3533 3738 3770 3808 3909 4780 4917 4922 4926 4958 4985 5001 5007 5017 5019 5021 5022 5023 5024 5970 5976 5985 5992 6086 6087 42699
+
+# netstat -i
+Kernel Interface table
+Iface             MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+bridge0          1500        0      0      0 0            10      0      0      0 BMPU
+bridge_rms       1500  6104547      0      0 0       6351143      0      0      0 BMRU
+eth0             1500        0      0      0 0             0      0      0      0 BMU
+eth0.160         1500        0      0      0 0             0      0      0      0 BMU
+eth0.161         1500        0      0      0 0             0      0      0      0 BMU
+eth0.162         1500        0      0      0 0             0      0      0      0 BMU
+eth0.163         1500        0      0      0 0             0      0      0      0 BMU
+eth0.164         1500        0      0      0 0             0      0      0      0 BMU
+eth0.165         1500        0      0      0 0             0      0      0      0 BMU
+eth0.166         1500        0      0      0 0             0      0      0      0 BMU
+eth0.167         1500        0      0      0 0             0      0      0      0 BMU
+eth0.169         1500        0      0      0 0             0      0      0      0 BMU
+eth0.170         1500        0      0      0 0             0      0      0      0 BMU
+eth0.171         1500        0      0      0 0             0      0      0      0 BMU
+lo              65536  5134936      0      0 0       5134936      0      0      0 LMRU
+rmnet_ipa0       9216        0      0      0 0             0      0      0      0 RU
+veth175.3        1500       76      0      0 0            78      0      0      0 BMRU
+veth176.3        1500    17553      0      0 0         17538      0      0      0 BMRU
+veth5105_Pyrb    1500  6104547      0      0 0       6351204      0      0      0 BMRU
+
+
+#netstat -g
+
+root@sa525m:~# netstat -g
+IPv6/IPv4 Group Memberships
+Interface       RefCnt Group
+--------------- ------ ---------------------
+lo              1      224.0.0.1
+eth0            1      224.0.0.1
+bridge0         1      224.0.0.1
+bridge0         1      224.0.0.106
+rmnet_ipa0      1      224.0.0.1
+eth0.160        1      224.0.0.1
+eth0.163        1      224.0.0.1
+eth0.164        1      224.0.0.1
+eth0.165        1      224.0.0.1
+bridge_rms      1      239.225.225.1
+bridge_rms      1      224.0.0.1
+bridge_rms      1      224.0.0.106
+eth0.161        1      224.0.0.1
+eth0.162        1      224.0.0.1
+eth0.166        1      224.0.0.1
+eth0.167        1      224.0.0.1
+eth0.169        1      224.0.0.1
+eth0.170        1      224.0.0.1
+eth0.171        1      224.0.0.1
+veth175.3       1      224.0.0.1
+veth176.3       1      224.0.0.1
+veth5105_Pyrb   1      224.0.0.1
+lo              1      ff01::a000:0:1:0:1
+
