@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "ctime: $(ls -lc $1 | awk '{print $6, $7, $8}')"
+echo "atime: $(ls -lu $1 | awk '{print $6, $7, $8}')"
+echo "mtime: $(ls -l  $1 | awk '{print $6, $7, $8}')"
