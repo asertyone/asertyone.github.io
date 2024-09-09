@@ -1,0 +1,23 @@
+odm/CL30B25/src/kernel/linux/v4.14/arch/arm/boot/dts/mt2731.dts
+	mt2731.dtsi:                    mac-address = [06 01 02 00 00 00];
+	
+	
+* Boot args
+odm/CL30B25/src/kernel/linux/v4.14/arch/arm/boot/dts/auto2731evb-ivt-mcp_lp4_nand_EVT.dts
+auto2731evb-ivt-mcp_lp4_nand_EVT.dts:           bootargs = "console=ttyS0,921600n1 ubi.mtd=13 rootfstype=ubifs \
+
+
+
+* GPT (GUID Partition Table)
+source : src/bsp/scatter
+recipes: meta/meta-mediatek/recipes-bsp/scatter/scatter.bb
+
+=> src/bsp/scatter/scripts/gen-partitions.sh 
+
+meta/meta-mediatek-mt2731/recipes-bsp/scatter/files/auto2731-ivt-mcp_nand_lp4/gen-partitions.ini
+meta/meta-mediatek/recipes-bsp/scatter/scatter.bb
+
+
+bitbake -c cleanall scatter
+bitbake scatter
+

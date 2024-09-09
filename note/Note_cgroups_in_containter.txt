@@ -1,0 +1,52 @@
+
+zcat /proc/config.gz | grep CONFIG_NET_CLS
+CONFIG_NET_CLS_BASIC=y
+CONFIG_NET_CLS_TCINDEX=y
+CONFIG_NET_CLS_ROUTE4=y
+CONFIG_NET_CLS_RSVP=y
+CONFIG_NET_CLS_CGROUP=y
+CONFIG_NET_CLS_BPF=y
+CONFIG_NET_CLS_FLOWER=y
+CONFIG_NET_CLS_MATCHALL=y
+
+-------------------------------
+systemd-cgls
+systemd-cgls [name] 
+              memory
+			  net_cls
+-------------------------------
+Check Kernel support V2
+ 
+
+grep cgroup /proc/filesystems
+
+nodev   cgroup
+nodev   cgroup2
+-------------------------------
+
+container: mkdir /run , 需要有/run目錄才能用iptables
+
+-------------------------------
+ps ax -Lf|grep -E "UID|8.8.8.8" |grep -v grep
+-------------------------------
+
+cgroupv1:
+
+mkdir -p /sys/fs/cgroup/net_cls,net_prio/macchina_group1/
+echo 0x100001 > /sys/fs/cgroup/net_cls,net_prio/macchina_group1/net_cls.classid
+
+(container)
+iptables -A OUTPUT -o eth0 -m cgroup --cgroup 0x100001 -j DROP
+iptables -A OUTPUT -o eth1 -m cgroup --cgroup 0x100001 -j DROP
+
+iptables -A OUTPUT -m cgroup ! --cgroup 0x100001 -j DROP
+
+(host)
+iptables -A OUTPUT -o wlan0 -m cgroup --cgroup 0x100001 -j DROP
+iptables -D OUTPUT -o wlan0 -m cgroup --cgroup 0x100001 -j DROP
+
+cgroupv2:
+
+cd /sys/fs/cgroup/unified/
+mkdir macchina_group
+echo 0x100001 > sys/fs/cgroup/unified/macchina_group/net_cls.classid

@@ -1,0 +1,4 @@
+ip -s -s neigh flush all
+The first -s will provide a more verbose output.
+
+ip neight show all

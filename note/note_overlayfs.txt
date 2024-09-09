@@ -1,0 +1,12 @@
+
+
+
+https://superuser.com/questions/1507278/mount-overlayfs-on-before-systemd-starts
+
+
+------------------------------------
+lsblk -o NAME,FSTYPE,MOUNTPOINT,SIZE,RO
+
+------------------------------------
+bitbake -c cleanall scatter
+bitbake scatter

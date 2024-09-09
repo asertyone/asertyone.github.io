@@ -1,0 +1,10 @@
+compgen
+
+-c  列出所有可用的命令
+-a	列出可用的所有bash shell别名
+-b	显示所有bash内置插件
+-k	显示所有bash关键字
+-A	显示所有bash函数
+
+compgen -A function
+compgen -a

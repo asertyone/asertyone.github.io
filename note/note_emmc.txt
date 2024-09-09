@@ -1,0 +1,37 @@
+Linux presents the various hardware partitions as separate devices:
+
+/dev/mmcblk0boot0 - BOOT0 partition
+/dev/mmcblk0boot1 - BOOT1 partition
+/dev/mmcblk0rpmb - RPMB partition
+/dev/mmcblk0 - USER partition
+
+
+# size of user partition
+printf "%dMiB\n" $((512*$(cat /sys/class/block/mmcblk0/size)/1024/1024))
+# size of boot0 partition
+printf "%dMiB\n" $((512*$(cat /sys/class/block/mmcblk0boot0/size)/1024/1024))
+# size of boot1 partition (will always be the same as boot0)
+printf "%dMiB\n" $((512*$(cat /sys/class/block/mmcblk0boot1/size)/1024/1024))
+# size of rpmb partition
+printf "%dMiB\n" $((512*$(cat /sys/class/block/mmcblk0rpmb/size)/1024/1024))
+
+
+
+eMMC devices are partitioned into several hardware partitions but only one can be selected at a time:
+
+BOOT - one or more small partitions intended for boot firmware (eMMC 4.3 spec requires 2 boot and 1 user partition)
+RPMB - Replay Protected Memory Block - intended to store secure data (ie DRM content protection keys) (eMMC 4.4 spec adds the requirement of an RPMB partition)
+USER - a large partition intended for general storage
+Notes:
+
+BOOT and RPMB partitions are configured as SLC while USER can be SLC or MLC.
+Read / Write commands sent to an eMMC do not directly address the hardware partitions but instead a special command is used to select a partition.
+A Card Specific Data (CSD) register (EXT_CSD[179]) is used to configure what partition is selected at power-up. This can be configured within Linux via the mmc-utils application, or within U-Boot via the mmc partconf command (see below).
+It is up to the user to decide if and how to use each of the hardware partitions.
+
+mmcblk0 為eMMC 的塊設備;
+mmcblk0boot0 和mmcblk0boot1 對應兩個Boot Area Partitions;
+mmcblk0rpmb 則為RPMB Partition，
+mmcblk0px 為UDA 劃分出來的SW Partitions;
+如果存在GPP，名稱則為mmcblk0gp1、mmcblk0gp2、mmcblk0gp3、mmcblk0gp4;
+

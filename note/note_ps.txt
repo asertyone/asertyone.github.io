@@ -1,0 +1,16 @@
+ps ax -Lf 
+
+        lwp         LWP       light weight process (thread) ID of the
+                             dispatchable entity (alias spid, tid).  See
+                             tid for additional information.
+							 
+	    nlwp        NLWP      number of lwps (threads) in the process.
+                             (alias thcount).
+							 
+							 
+ps ax -o pid,ppid,pidns,netns,mntns,utsns,pcpu,pmem,rss,vsz,cmd 
+ps wwf -o pid,ppid,pidns,netns,mntns,utsns,pcpu,pmem,rss,vsz,cmd 
+ps wwfax -o pid,ppid,pidns,netns,mntns,utsns,pcpu,pmem,rss,vsz,cmd 
+
+nsenter -t PID --pid --mount ...
+ ps axwwf -o pid,ppid,pcpu,pmem,rss,vsz,cmd

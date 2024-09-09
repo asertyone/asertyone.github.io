@@ -1,0 +1,282 @@
+
+bridge-utils iperf3 dnsmasq dhcpcd
+--------------------------------------------
+ifconfig的txqueuelen参数设置设备的传输队列的长度。
+
+ifconfig eth0 txqueuelen 10000
+或者
+# ip link set eth0 txqueuelen 10000
+建议每个接口的值在1000到20000之间。
+
+The txqueuelen set by the ifconfig or ip commands is number of frames allowed per kernel transmission queue for the queuing discipline
+ethtool -G uses ioctl to set the number of ring entries for the ring buffer on the NIC itself.
+
+-------------------------------------------------------------------
+WNC上 要開的kernel config
+
+CONFIG_IFB=y
+CONFIG_NET_SCH_CBQ=y
+CONFIG_NET_SCH_SFQ=y
+CONFIG_NET_SCH_DEFAULT=y
+
+CONFIG_NET_CLS_BASIC=y
+CONFIG_NET_CLS_TCINDEX=y
+CONFIG_NET_CLS_ROUTE4=y
+CONFIG_NET_CLS_FLOWER=y
+CONFIG_NET_CLS_MATCHALL=y
+
+CONFIG_NET_ACT_SIMP=y
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+ip link set dev ifb0 down
+tc qdisc del dev ifb0 root
+
+modprobe ifb numifbs=1
+-------------------------------------------------------------------
+ICMP
+
+tc qdisc  add dev eth0 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev eth0 parent 1: protocol ip prio 10 u32 match ip protocol 1 0xff flowid 1:1 action simple sdata  "[eth0] icmp egress " action mirred egress redirect dev ifb1 	
+
+tc qdisc add dev eth0 ingress
+tc filter add dev eth0 parent ffff: protocol ip prio 1 u32 match ip protocol 1 0xff action simple sdata "[eth0] icmp ingress "
+
+tc qdisc add dev ifb1 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc class add dev ifb1 parent 1:  classid 1:1 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8
+ 
+tc class add dev ifb1 parent 1:1 classid 1:10 cbq bandwidth 1000Mbit rate 64Kbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 900Mbit bounded
+tc class add dev ifb1 parent 1:1 classid 1:20 cbq bandwidth 1000Mbit rate 64Kbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 100Mbit bounded
+tc class add dev ifb1 parent 1:1 classid 1:30 cbq bandwidth    1Mbit rate 64Kbit             allot 1514 prio 1 avpkt 1000 cell 8 weight   1Mbit bounded
+
+#tc qdisc add dev ifb1 parent 1:10 sfq quantum 1514b perturb 15
+#tc qdisc add dev ifb1 parent 1:20 sfq quantum 1514b perturb 15
+#tc qdisc add dev ifb1 parent 1:30 sfq quantum 1514b perturb 15
+
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.161.0/24 flowid 1:10 action simple sdata "[ifb1] egress 1(1:10) "
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.171.0/24 flowid 1:10 action simple sdata "[ifb1] egress 2(1:10) "
+
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.162.0/24 flowid 1:20 action simple sdata "[ifb1] egress 3(1:20) "
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.172.0/24 flowid 1:20 action simple sdata "[ifb1] egress 4(1:20) "
+
+tc filter add dev ifb1 parent 1: protocol ip prio 3 u32 match ip src 192.168.100.0/24 flowid 1:30 action simple sdata "[ifb1] egress 5(1:30) "
+ip link set dev ifb1 up
+-------------------------------------------------------------------
+
+tc qdisc  add dev eth0 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev eth0 parent 1: u32 match u32 0 0 flowid 1:1 action simple sdata  "[eth0] egress " action mirred egress redirect dev ifb1 	
+
+tc qdisc add dev eth0 ingress
+tc filter add dev eth0 parent ffff: protocol ip prio 1 u32 match u32 0 0 action simple sdata "[eth0] ingress "
+
+tc qdisc  add dev wlan0 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev wlan0 parent 1: u32 match u32 0 0 flowid 1:1 action simple sdata "[wlan0] egress " action mirred egress redirect dev ifb1	
+
+tc qdisc add dev ifb1 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc class add dev ifb1 parent 1:  classid 1:1 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8
+ 
+tc class add dev ifb1 parent 1:1 classid 1:10 cbq bandwidth 1000Mbit rate 64Kbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 900Mbit bounded
+tc class add dev ifb1 parent 1:1 classid 1:20 cbq bandwidth 1000Mbit rate 64Kbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 100Mbit bounded
+tc class add dev ifb1 parent 1:1 classid 1:30 cbq bandwidth    1Mbit rate 64Kbit             allot 1514 prio 1 avpkt 1000 cell 8 weight   1Mbit bounded
+
+#tc qdisc add dev ifb1 parent 1:10 sfq quantum 1514b perturb 15
+#tc qdisc add dev ifb1 parent 1:20 sfq quantum 1514b perturb 15
+#tc qdisc add dev ifb1 parent 1:30 sfq quantum 1514b perturb 15
+
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.161.0/24 flowid 1:10 action simple sdata "[ifb1] egress 1(1:10) "
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.171.0/24 flowid 1:10 action simple sdata "[ifb1] egress 2(1:10) "
+
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.162.0/24 flowid 1:20 action simple sdata "[ifb1] egress 3(1:20) "
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.172.0/24 flowid 1:20 action simple sdata "[ifb1] egress 4(1:20) "
+
+tc filter add dev ifb1 parent 1: protocol ip prio 3 u32 match ip src 192.168.100.0/24 flowid 1:30 action simple sdata "[ifb1] egress 5(1:30) "
+ip link set dev ifb1 up
+
+#tc filter add dev ifb1 parent 1: protocol ip prio 1 flower indev eth0 flowid 1:30
+-------------------------------------------------------------------
+vlan_a & vlan_b
+
+tc qdisc  add dev eth_vlan_a root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev eth_vlan_a parent 1: u32 match u32 0 0 flowid 1:1 action simple sdata "[eth_vlan_a] egress " action mirred egress redirect dev ifb1 	
+
+tc qdisc  add dev eth_vlan_a ingress
+tc filter add dev eth_vlan_a parent ffff: protocol ip prio 1 u32 match u32 0 0 action simple sdata "[eth_vlan_a] ingress "
+
+tc qdisc  add dev eth_vlan_b root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev eth_vlan_b parent 1: u32 match u32 0 0 flowid 1:1 action simple sdata "[eth_vlan_b] egress " action mirred egress redirect dev ifb1
+
+tc qdisc  add dev eth_vlan_b ingress
+tc filter add dev eth_vlan_b parent ffff: protocol ip prio 1 u32 match u32 0 0 action simple sdata "[eth_vlan_b] ingress "	
+
+tc qdisc add dev ifb1 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc class add dev ifb1 parent 1:  classid 1:1 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8
+ 
+tc class add dev ifb1 parent 1:1 classid 1:10 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 900Mbit bounded
+tc class add dev ifb1 parent 1:1 classid 1:20 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 100Mbit bounded
+
+tc qdisc add dev ifb1 parent 1:10 sfq quantum 1514b perturb 15
+tc qdisc add dev ifb1 parent 1:20 sfq quantum 1514b perturb 15
+
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.160.0/24 flowid 1:10 action simple sdata "[ifb1] egress 1(1:10) "
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.170.0/24 flowid 1:10 action simple sdata "[ifb1] egress 2(1:10) "
+
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.161.0/24 flowid 1:20 action simple sdata "[ifb1] egress 3(1:20) "
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.171.0/24 flowid 1:20 action simple sdata "[ifb1] egress 4(1:20) "
+
+ip link set dev ifb1 up
+
+-------------------------------------------------------------------
+vlan_a & vlan_b
+
+tc qdisc  add dev eth_vlan_a root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev eth_vlan_a parent 1: u32 match u32 0 0 flowid 1:1 action mirred egress redirect dev ifb1 	
+
+tc qdisc  add dev eth_vlan_b root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc filter add dev eth_vlan_b parent 1: u32 match u32 0 0 flowid 1:1 action mirred egress redirect dev ifb1
+
+tc qdisc add dev ifb1 root handle 1: cbq bandwidth 1000Mbit avpkt 1000 cell 8 mpu 64
+tc class add dev ifb1 parent 1:  classid 1:1 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8
+ 
+tc class add dev ifb1 parent 1:1 classid 1:10 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 900Mbit bounded
+tc class add dev ifb1 parent 1:1 classid 1:20 cbq bandwidth 1000Mbit rate 1000Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 100Mbit bounded
+
+tc qdisc add dev ifb1 parent 1:10 pfifo limit 20
+tc qdisc add dev ifb1 parent 1:20 pfifo limit 20
+
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.160.0/24 flowid 1:10 
+tc filter add dev ifb1 parent 1: protocol ip prio 1 u32 match ip src 192.168.170.0/24 flowid 1:10 
+
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.161.0/24 flowid 1:20 
+tc filter add dev ifb1 parent 1: protocol ip prio 2 u32 match ip src 192.168.171.0/24 flowid 1:20 
+
+ip link set dev ifb1 up
+
+
+-------------------------------------------------------------------
+iptables -t raw    -I PREROUTING  -p icmp -j LOG --log-prefix 'ipt/PREROUTE/raw'     --log-level debug
+iptables -t mangle -I PREROUTING  -p icmp -j LOG --log-prefix 'ipt/PREROUTE/mangle'  --log-level debug
+iptables -t nat    -I PREROUTING  -p icmp -j LOG --log-prefix 'ipt/PREROUTE/nat'     --log-level debug
+
+iptables -t mangle -I FORWARD     -p icmp -j LOG --log-prefix 'ipt/FORWARD/mangle'   --log-level debug
+iptables -t filter -I FORWARD     -p icmp -j LOG --log-prefix 'ipt/FORWARD/filter'   --log-level debug
+
+iptables -t mangle -I INPUT       -p icmp -j LOG --log-prefix 'ipt/INPUT/mangle'     --log-level debug
+iptables -t filter -I INPUT       -p icmp -j LOG --log-prefix 'ipt/INPUT/filter'     --log-level debug
+
+iptables -t raw    -I OUTPUT      -p icmp -j LOG --log-prefix 'ipt/OUTPUT/raw'       --log-level debug
+iptables -t mangle -I OUTPUT      -p icmp -j LOG --log-prefix 'ipt/OUTPUT/mangle'    --log-level debug
+iptables -t nat    -I OUTPUT      -p icmp -j LOG --log-prefix 'ipt/OUTPUT/nat'       --log-level debug
+iptables -t filter -I OUTPUT      -p icmp -j LOG --log-prefix 'ipt/OUTPUT/filter'    --log-level debug
+
+iptables -t mangle -I POSTROUTING -p icmp -j LOG --log-prefix 'ipt/POSTROUTE/mangle' --log-level debug
+iptables -t nat    -I POSTROUTING -p icmp -j LOG --log-prefix 'ipt/POSTROUTE/nat'    --log-level debug
+
+ebtables -t broute -I BROUTING    --log --log-prefix 'ebt/BROUTING/broute' --log-level debug
+ebtables -t nat    -I PREROUTING  --log --log-prefix 'ebt/PREROUTE/nat'    --log-level debug
+ebtables -t filter -I FORWARD     --log --log-prefix 'ebt/FORWARD/filter'  --log-level debug
+ebtables -t nat    -I OUTPUT      --log --log-prefix 'ebt/OUTPUT/nat'      --log-level debug
+ebtables -t filter -I INPUT       --log --log-prefix 'ebt/INPUT/filter'    --log-level debug
+ebtables -t filter -I OUTPUT      --log --log-prefix 'ebt/OUTPUT/filter'   --log-level debug
+ebtables -t nat    -I POSTROUTING --log --log-prefix 'ebt/POSTROUTE/nat'   --log-level debug
+-------------------------------------------------------------------
+watch -d=cumulative tc -s -g -d class show dev ifb0
+tc -s -g -d class show dev ifb0
+tc -s -d filter show dev ifb0
+-------------------------------------------------------------------
+iperf3 -c 192.168.100.50 -b 1000m -i 1 -t 10 -u -P 4
+iperf3 -c 192.168.100.50 -i 1 -t 10 -u -P 4
+iperf3 -s -D
+-------------------------------------------------------------------
+tc -s -d filter show dev ifb0 egress
+
+#創建根分類1:1；分配帶寬為10Mbit，優先級別為1。該隊列的最大可用帶寬為10Mbit，實際分配的帶寬為10Mbit，可接收衝突的發送最長包數目為20字節；最大傳輸單元加MAC頭的大小為1514字節，優先級別為1，包的平均大小為1000字節，包間隔發送單元的大小為8字節，相應於實際帶寬的加權速率為1Mbit。
+tc class add dev eth0 parent 1:0 classid 1:1 cbq bandwidth 10Mbit rate 10Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 1Mbit
+
+#創建分類1:2，其父分類為1:1，分配帶寬為64Kbit，優先級別為8。該隊列的最大可用帶寬為10Mbit，實際分配的帶寬為64Kbit，可接收衝突的發送最長包數目為20字節；最大傳輸單元加MAC頭的大小為1514字節，優先級別為8，包的平均大小為1000字節，包間隔發送單元的大小為8字節，相應於實際帶寬的加權速率為100Kbit，且不可藉用未使用帶寬。
+tc class add dev eth0 parent 1:1 classid 1:2 cbq bandwidth 10Mbit rate 64Kbit maxburst 20 allot 1514 prio 8 avpkt 1000 cell 8 weight 100Kbit bounded
+
+#創建分類1:3，其父分類為1:1，分配帶寬為64Kbit，優先級別為9。該隊列的最大可用帶寬為10Mbit，實際分配的帶寬為64Kbit，可接收衝突的發送最長包數目為20字節；最大傳輸單元加MAC頭的大小為1514字節，優先級別為9，包的平均大小為1000字節，包間隔發送單元的大小為8字節，相應於實際帶寬的加權速率為100Kbit，且不可藉用未使用帶寬。
+tc class add dev eth0 parent 1:1 classid 1:3 cbq bandwidth 10Mbit rate 64Kbit maxburst 20 allot 1514 prio 9 avpkt 1000 cell 8 weight 100Kbit bounded
+
+tc qdisc add dev eth0 parent 1:2 sfq quantum 1514b perturb 15
+tc qdisc add dev eth0 parent 1:3 sfq quantum 1514b perturb 15
+#在分類底下，創建隊列，使用sfq隨即公平隊列
+
+#tc filter add dev eth0 parent 1:0 protocol ip prio 1 u32 match ip dst 192.111.1.116 flowid 1:2
+#tc filter add dev eth0 parent 1:0 protocol ip prio 1 u32 match ip dst 192.111.1.66 flowid 1:3
+
+
+
+
+
+
+
+
+iperf3 -c 192.168.160.3 -p12345 -i 1 --logfile 160_1.txt
+iperf3 -c 192.168.161.3 -p12346 -i 1 --logfile 160_2.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tc qdisc  add dev eth0 root handle 1: htb r2q 625 default 65
+	#tc qdisc add dev eth0 root handle 1: cbq bandwidth 10Mbit avpkt 1000 cell 8 mpu 64
+
+tc class  add dev eth0 parent 1: classid 1:1 htb rate 1000Mbit
+	#tc class add dev eth0 parent 1:0 classid 1:1 cbq bandwidth 10Mbit rate 10Mbit maxburst 20 allot 1514 prio 1 avpkt 1000 cell 8 weight 1Mbit
+
+		
+		tc filter add dev eth0 parent 1: u32 match u32 0 0 action mirred egress redirect dev ifb0
+		
+tc filter add dev eth0 parent 1: protocol all prio 1 u32 match ip protocol 0xff 0xff flowid 1:1 action mirred egress redirect dev ifb0
+	#tc filter add dev eth0 parent 1: protocol ip u32 match 0 0 action mirred egress redirect dev ifb0
+	
+tc class  add dev eth0 parent 1:1 classid 1:10 htb rate 10Mbit
+tc filter add dev eth0 parent 1: protocol all prio 1 u32 match ip protocol 0xff 0xff flowid 1:10 action mirred egress redirect dev ifb0
+
+
+		tc filter add dev eth0 parent 1: protocol all prio 1 matchall action mirred egress redirect dev ifb0
+		tc filter add dev eth0 parent 1: protocol ip matchall action mirred egress redirect dev ifb0
+
+		tc qdisc  add dev eth0 parent 1:10 handle 10: sfq
+		
+tc qdisc add dev ifb0 root handle 1: htb default 20
+tc class add dev ifb0 parent 1: classid 1:1 htb rate 10000mbit
+tc class add dev ifb0 parent 1:1 classid 1:10 htb rate 2000mbit
+tc class add dev ifb0 parent 1:1 classid 1:20 htb rate 1000mbit
+tc class add dev ifb0 parent 1:1 classid 1:30 htb rate 500mbit
+
+tc filter add dev ifb0 protocol ip parent 1:0 prio 1 u32 match ip src 129.9.123.85 flowid 1:10
+tc filter add dev ifb0 protocol ip parent 1:0 prio 1 u32 match ip src 129.9.123.89 flowid 1:20 
+tc filter add dev ifb0 protocol ip parent 1:0 prio 1 u32 match ip src 129.9.123.88 flowid 1:20 
+tc filter add dev ifb0 protocol ip parent 1:0 prio 1 u32 match ip dport 50051 0xffff flowid 1:30
+tc filter add dev ifb0 protocol ip parent 1:0 prio 1 u32 match ip sport 45678 0xffff flowid 1:30
+
+
+ip link set dev ifb0 up 
+	
+	
+
+
+  
+  
+  

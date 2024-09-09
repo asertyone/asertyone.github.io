@@ -1,0 +1,95 @@
+* 看ifindex
+container內: cat /sys/class/net/eth0/iflink
+host: cat /sys/class/net/vethXXXXXXX/ifindex	
+
+ethtool -S vethxxxx 
+ip a
+
+-----------------------------------------------------------------------------------------------
+docker network ls
+docker network rm 名稱
+docker network prune
+-----------------------------------------------------------------------------------------------
+* docker 建立vlan bridge
+
+docker network create -d bridge --subnet  "192.168.170.0/24" --gateway "192.168.170.1" br_vlan_a
+docker network create -d bridge --subnet  "192.168.171.0/24" --gateway "192.168.171.1" br_vlan_b
+
+docker run -dit --name  container0 --network br_vlan_a  `docker images -q b25` /bin/bash
+docker network connect br_vlan_b container0
+docker exec -it container0 /bin/bash
+-----------------------------------------------------------------------------------------------
+* VLAN
+RTBM:
+ip link add link eth0 name vlan_a type vlan id 1
+ip link add link eth0 name vlan_b type vlan id 161
+ip link add link eth0 name vlan_c type vlan id 162
+ip link add link eth0 name vlan_w type vlan id 163
+
+ip addr add 192.168.160.2/24 brd 192.168.160.255 dev vlan_a
+ip addr add 192.168.161.2/24 brd 192.168.161.255 dev vlan_b
+ip addr add 192.168.162.2/24 brd 192.168.162.255 dev vlan_c
+ip addr add 192.168.163.2/24 brd 192.168.163.255 dev vlan_w
+
+ip link set dev vlan_a up
+ip link set dev vlan_b up
+ip link set dev vlan_c up
+ip link set dev vlan_w up
+
+
+ip -d link show vlan_a
+ip -d link show vlan_b
+ip -d link show vlan_c
+ip -d link show vlan_w
+
+ip link del vlan_a
+
+VLAN IVI:
+ip link add link eth0 name vlan_a type vlan id 1
+ip link add link eth0 name vlan_b type vlan id 161
+ip link add link eth0 name vlan_c type vlan id 162
+ip link add link eth0 name vlan_w type vlan id 163
+
+ip addr add 192.168.160.3/24 brd 192.168.160.255 dev vlan_a
+ip addr add 192.168.161.3/24 brd 192.168.161.255 dev vlan_b
+ip addr add 192.168.162.3/24 brd 192.168.162.255 dev vlan_c
+ip addr add 192.168.163.3/24 brd 192.168.163.255 dev vlan_w
+
+ip link set dev vlan_a up
+ip link set dev vlan_b up
+ip link set dev vlan_c up
+ip link set dev vlan_w up
+
+Win10:
+
+	
+route ADD 192.168.161.0 MASK 255.255.255.0  192.168.160.2 IF 62
+route ADD 192.168.162.0 MASK 255.255.255.0  192.168.160.2 IF 67
+--------------------------------------------
+* veth pair
+
+https://man7.org/linux/man-pages/man4/veth.4.html
+
+# ip link add <p1-name> type veth peer name <p2-name>
+# ip link set <p2-name> netns <p2-ns>
+
+$ ip netns add blue	#建立命令空間
+$ ip link add veth-red type veth peer name veth-blue
+$ ip link set veth-blue up netns blue
+$ ip link set veth-red up
+
+# 開啟veth-red，賦予它IP地址192.168.15.1，子網掩碼為255.255.255.0
+$ ip addr add 192.168.15.1/24 dev veth-red
+$ ip link set veth-red up
+
+# 開啟veth-blue，賦予它IP地址192.168.15.2，子網掩碼為255.255.255.0
+$ ip netns exec blue ip addr add 192.168.15.2/24 dev veth-blue
+$ ip netns exec blue ip link set veth-blue up
+
+#檢視命令空間blue的路由
+$ ip netns exec blue route -n
+
+# 互相ping通
+$ ip netns exec red ping 192.168.15.2
+#檢視arp表，發現blue的arp表中出現了red的ip地址以及MAC地址記錄，相應的red的arp表中也出現了blue的記錄。
+$ ip netns exec blue arp

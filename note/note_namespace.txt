@@ -1,0 +1,9 @@
+ps ax -o pid,ppid,pidns,netns,mntns,utsns,pcpu,pmem,rss,vsz,cmd 
+ps wwf -o pid,ppid,pidns,netns,mntns,utsns,pcpu,pmem,rss,vsz,cmd 
+ps wwfax -o pid,ppid,pidns,netns,mntns,utsns,pcpu,pmem,rss,vsz,cmd 
+
+nsenter -t PID --pid --mount ...
+
+unshare 
+
+

@@ -1,1 +1,0 @@
-strace -f -a 1000 -o /tmp/strace.log -p 1 & systemctl start conmgr.service

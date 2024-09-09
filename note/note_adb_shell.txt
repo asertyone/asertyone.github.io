@@ -1,0 +1,9 @@
+adb shell
+
+stty rows 60 cols 156
+
+
+
+You logon directly via bash in interactive way.
+adb shell -t bash -i 
+

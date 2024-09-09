@@ -1,0 +1,12 @@
+
+sudo apt install inotify-tools
+
+inotifywait -rme create,modify,move,delete ./openwrt/ -o log.txt
+
+inotifywait -rme create,modify,move,delete --exclude /dev /
+inotifywait -rm --exclude /dev /
+
+sysctl -w fs.inotify.max_user_instances=1024
+sysctl -w fs.inotify.max_user_watches=999999
+
+echo "999999" > /proc/sys/fs/inotify/max_user_watches

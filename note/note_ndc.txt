@@ -1,0 +1,17 @@
+source code: code_release/apps/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/platform-libs/1.0-r0/platform/system/netd/
+
+Android Netd ndc
+
+設定dns
+ndc resolver setnetdns 6001 ccmni1 10.255.253.155 10.255.255.155
+
+//配合add使用可以查看狀態等
+ndc tether interface list
+ndc tether interface remove
+ndc tether status
+
+//查看eht0設備節點的情況，能看到當前連接IP 狀態 mac地址等
+ndc interface getcfg eth0     
+root@almond:/ # ndc interface getcfg eth0 
+
+ndc monitor指令可以觀察ndc被呼叫的狀況, 下面是無線網路開啟的網路變動

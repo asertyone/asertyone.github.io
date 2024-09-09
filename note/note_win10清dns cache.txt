@@ -1,0 +1,7 @@
+ipconfig /flushdns
+ipconfig /displaydns
+
+
+
+PowerShell:
+ Clear-DnsClientCache

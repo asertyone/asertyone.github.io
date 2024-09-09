@@ -1,0 +1,12 @@
+
+
+返回一個對象的xml描述，描述了obj path、property、接口的方法、信號等等。
+org.freedesktop.DBus.Introspectable.Introspect(out string xml_data)
+
+總線本身擁有一個特殊的名稱，org.freedesktop.DBus，其對象位於/org/freedesktop/DBus實現org.freedesktop.DBus接口。
+該服務允許應用程序對總線本身進行管理請求。例如，應用程序可以要求總線為連接分配名稱。
+dbus-send --system --print-reply --type=method_call --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.Introspectable.Introspect
+
+
+ListNames可以打印所有掛在消息總線上的鏈接名:
+dbus-send --system --print-reply --type=method_call --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.ListNames

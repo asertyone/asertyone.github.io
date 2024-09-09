@@ -1,0 +1,112 @@
+
+
+-------------------------------------
+* 打包openwrt rootfs:
+
+cd build_dir/target-arm_cortex-a7+neon-vfpv4_musl_eabi/root-mediatek
+tar cvf ~/openwrt.tar bin  etc  home  lib  media  mnt  overlay  proc  rom  run  sbin  sys  tmp  usr  var  www
+-------------------------------------
+* 修改eth0 mac address
+
+ifconfig eth0 down; ifconfig eth0 hw ether 3c:07:54:47:93:9f; ifconfig eth0 up
+-------------------------------------
+* docker.service
+
+adb push docker.service /lib/systemd/system/docker.service
+
+vi /lib/systemd/system/docker.service
+--data-root /var/log
+-------------------------------------
+* run container & connect into container:
+
+adb push openwrt.tar /var/log
+
+adb shell; 
+
+cat /var/log/openwrt.tar | docker import - openwrt; \
+docker run -dit --privileged --network host --cap-add NET_ADMIN  -v /var/run:/var/run `docker images -q` /etc/preinit; \
+docker exec -it `docker ps -q` /bin/bash;
+
+-------------------------------------
+* stop containter & remove containter image:
+
+docker stop `docker ps -q`; \
+docker image rm -f `docker images -q`
+rm /var/log/openwrt.tar
+
+docker stop `docker ps -q` ; docker image rm -f `docker images -q` ; rm /var/log/openwrt.tar
+
+-------------------------------------
+* import wifi uci config:
+
+cd /etc/config
+touch wireless 
+uci batch << EOF
+add wireless wlan0
+set wireless.wlan0=wifi-device
+set wireless.wlan0.type='mac80211'
+set wireless.wlan0.channel='36'
+set wireless.wlan0.hwmode="ac"
+set wireless.wlan0.ht='20'
+set wireless.wlan0.country='US'
+set wireless.wlan0.disabled='0'
+commit
+EOF
+
+vi /etc/config/netowrk
+
+config interface 'wan1'
+        option ifname 'ccmni0'
+        option proto 'dhcp'
+		
+config interface 'wan2'
+        option ifname 'ccmni1'
+        option proto 'dhcp'
+		
+config interface 'wlan'
+        option ifname 'wlan0'
+        option proto 'dhcp'
+
+-------------------------------------
+* make openwrt patch 
+ 
+# https://openwrt.org/docs/guide-developer/toolchain/use-patches-with-buildsystem
+
+1.
+cat << EOF > ~/.quiltrc
+QUILT_DIFF_ARGS="--no-timestamps --no-index -p ab --color=auto"
+QUILT_REFRESH_ARGS="--no-timestamps --no-index -p ab"
+QUILT_SERIES_ARGS="--color=auto"
+QUILT_PATCH_OPTS="--unified"
+QUILT_DIFF_OPTS="-p"
+EDITOR="vim"
+EOF
+
+2.
+make package/system/procd/{clean,prepare} V=s QUILT=1
+cd build_dir/target-arm_cortex-a7+neon-vfpv4_musl_eabi/procd-2020-03-07-09b9bd82
+quilt push -a
+quilt new 001-hotplug.patch
+quilt edit plug/hotplug.c
+quilt diff
+quilt refresh
+cd ../../../
+make package/system/procd/update V=s
+
+3.	
+commit package/system/procd/patches/*
+-------------------------------------
+* openwrt single build package:
+
+https://openwrt.org/zh-tw/doc/howto/build
+-------------------------------------
+tcpdump -nni eth0 icmp
+route ADD 192.168.0.0 MASK 255.255.0.0  192.168.1.1 METRIC 50 IF 8
+route ADD 192.168.0.0 MASK 255.255.0.0  192.168.100.100 METRIC 50 IF 8
+ifconfig eth0 down; ifconfig eth0 172.31.1.1; ifconfig eth0 up;
+ifconfig eth0 down; ifconfig eth0 192.168.1.1; ifconfig eth0 up;
+ifconfig eth0 down; ifconfig eth0 192.168.100.100; ifconfig eth0 up;
+
+route add 192.168.170.0 mask 255.255.255.0 192.168.160.2 if 61
+route add 192.168.171.0 mask 255.255.255.0 192.168.160.2 if 61
+-------------------------------------

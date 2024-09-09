@@ -1,0 +1,10 @@
+#Monitor open files of a process in realtime
+
+strace -f -e trace=open,openat,close,read,write,connect,accept  [COMMAND] -o outfile
+
+The "-f" will "follow" fork calls into the child processe
+
+
+
+# strace systemd service
+strace -f -a 1000 -o /tmp/strace.log -p 1 & systemctl start conmgr.service

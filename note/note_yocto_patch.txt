@@ -1,0 +1,43 @@
+其中共包含五步（本文以給.c 文件打patch 為例）：
+
+1. 取一份完全乾淨的sourcecode （確保打patch前可以成功編譯），然後執行bitbake 相應的xx.bb文件(xx代表文件名，下文中的xx表示此處的bb文件名)。
+2.找到~/build/tmp/work/ 目錄下以xx.bb文件名xx命名的文件夾，在該目錄下執行
+grep -nr 文件名.c
+找到最終用於編譯的.c文件。
+
+tips:
+a.如果是.c文件在該.c 文件目錄下一般會有相應的.o 文件。
+b. 如果是採用git 做的，此處應該先
+
+git add 文件名.c
+git commit -m " biubiu"
+
+以此確保，在接下來生成的patch是在此最終形態上的修改。
+
+3.在編譯最終的.c 文件目錄下，修改該文件，改成最終代碼
+4.生成patch
+a. 第一種，通過diff生成patch：
+
+diff -uN ~ origina /lc ~ atest /lc > diff_patch
+
+b.第二種，通過git命令生成patch：
+
+git add 文件名.c
+
+git commit -m "hiahiahia"
+
+git format-patch -1
+
+5.在對應的~/meta-XXXX /recipe-/目錄下添加bb文件對應的 xx,bbappend 文件，並根據自己的編譯目錄需求添加相應的patch。例如在某個bbappend文件中添加如下指令
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/file:"
+
+SRC_URI_append = " \
+                   file://0001-hello.patch;patch=1 \
+" 
+將0001-hello.patch放入bbappend 目錄下的file 文件中，bitbake xx.bb的時候就回去尋找xx.bbappend 然後可以去蒐集到這個patch。
+
+最後執行bitbake 驗證，patch是否成功。
+===================================================================================
+
+maybe-uninitialized

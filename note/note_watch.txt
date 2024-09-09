@@ -1,0 +1,5 @@
+export TERM=linux
+
+watch -d=cumulative [COMMAND]
+
+default 2s update, -n 設定秒數

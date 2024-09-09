@@ -1,0 +1,11 @@
+PS4='Line ${LINENO}: ' bash -x 執行檔
+
+export PS4='\033[0;33m+(${BASH_SOURCE}:${LINENO}):\033[0m ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+
+
+
+shopt -s extglob
+
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell 

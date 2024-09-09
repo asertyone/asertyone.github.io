@@ -1,0 +1,227 @@
+ip6tables NAT:
+CONFIG_IP6_NF_NAT=y
+
+iptables log module:
+CONFIG_NETFILTER_XT_TARGET_LOG=y
+
+
+ebtables:
+
+CONFIG_BRIDGE_NF_EBTABLES=y
+CONFIG_BRIDGE_EBT_BROUTE=y
+CONFIG_BRIDGE_EBT_T_FILTER=y
+CONFIG_BRIDGE_EBT_T_NAT=y
+CONFIG_BRIDGE_EBT_802_3=y
+CONFIG_BRIDGE_EBT_AMONG=y
+CONFIG_BRIDGE_EBT_ARP=y
+CONFIG_BRIDGE_EBT_IP=y
+CONFIG_BRIDGE_EBT_IP6=y
+CONFIG_BRIDGE_EBT_LIMIT=y
+CONFIG_BRIDGE_EBT_MARK=y
+CONFIG_BRIDGE_EBT_PKTTYPE=y
+CONFIG_BRIDGE_EBT_STP=y
+CONFIG_BRIDGE_EBT_VLAN=y
+CONFIG_BRIDGE_EBT_ARPREPLY=y
+CONFIG_BRIDGE_EBT_DNAT=y
+CONFIG_BRIDGE_EBT_MARK_T=y
+CONFIG_BRIDGE_EBT_REDIRECT=y
+CONFIG_BRIDGE_EBT_SNAT=y
+CONFIG_BRIDGE_EBT_LOG=y
+CONFIG_BRIDGE_EBT_NFLOG=y
+
+
+IMAGE_INSTALL_append = " macchina mcudaemon rb-swmc auditd containerd-opencontainers runc-docker snort arptables ebtables bridge-utils"
+
+--------------------------------------------
+iptables -F 
+iptables -F -t nat
+iptables -nvL --line-number
+iptables-save -c
+
+iptables -t nat -A POSTROUTING -s 192.168.100.0/255.255.255.0 -o wlan0 -j MASQUERADE
+iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
+iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+--------------------------------------------
+iptables -t nat -A POSTROUTING -s 192.168.170.0/255.255.255.0 -o wlan0 -j MASQUERADE
+iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
+iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+
+
+--------------------------------------------
+iptables -A FORWARD -o eth0 -p udp --dport 53 -j REJECT
+iptables -A FORWARD -o eth0 -p tcp --dport 53 -j REJECT
+iptables -A OUTPUT -o eth0 -p udp --dport 53 -j REJECT
+iptables -A OUTPUT -o eth0 -p tcp --dport 53 -j REJECT
+--------------------------------------------
+ip route add 192.168.3.0/24 via 192.168.1.1 dev eth0
+route add -net default gw 10.10.0.1 netmask 0.0.0.0 dev wlan0 metric 1
+--------------------------------------------
+* ARP
+ip neigh = ip ne
+ip -s -s neigh flush all
+
+The first -s will provide a more verbose output. By adding one more, we can select the neighbor table. The neighbor table with the ip command equals both the ARP and NDISC cache. Note that the -s options are not available on all versions of the ip command. If it not supported for your version of ip, then simply remove them from the command.
+
+ip ne add 192.168.99.254 lladdr 00:80:c8:27:69:2d dev eth3
+ip ne change 2001:288:5000:80::1 dev eno16777984  lladdr 70:e4:22:25:7b:8f
+ip ne del 192.168.56.1 dev ens192
+ip ne flush dev eth0
+--------------------------------------------
+* Proxy arp
+
+echo 1 > /proc/sys/net/ipv4/conf/wlan0/proxy_arp
+echo 1 > /proc/sys/net/ipv4/conf/eth0/proxy_arp
+
+sudo sysctl net.ipv4.conf.all.proxy_arp=1
+sudo sysctl net.ipv4.conf.eth0.proxy_arp=1
+sudo sysctl -p
+--------------------------------------------
+
+* VLAN
+RTBM:
+ip link add link eth0 name vlan_a type vlan id 1
+ip link add link eth0 name vlan_b type vlan id 161
+ip link add link eth0 name vlan_c type vlan id 162
+ip link add link eth0 name vlan_w type vlan id 163
+ip -d link show vlan_a
+ip -d link show vlan_b
+ip -d link show vlan_c
+ip -d link show vlan_w
+ip addr add 192.168.160.2/24 brd 192.168.160.255 dev vlan_a
+ip addr add 192.168.161.2/24 brd 192.168.161.255 dev vlan_b
+ip addr add 192.168.162.2/24 brd 192.168.162.255 dev vlan_c
+ip addr add 192.168.163.2/24 brd 192.168.163.255 dev vlan_w
+ip link set dev vlan_a up
+ip link set dev vlan_b up
+ip link set dev vlan_c up
+ip link set dev vlan_w up
+
+ip link del vlan_a
+
+
+VLAN IVI:
+ip link add link eth0 name vlan_a type vlan id 1
+ip link add link eth0 name vlan_b type vlan id 161
+ip link add link eth0 name vlan_c type vlan id 162
+ip link add link eth0 name vlan_w type vlan id 163
+
+ip addr add 192.168.160.3/24 brd 192.168.160.255 dev vlan_a
+ip addr add 192.168.161.3/24 brd 192.168.161.255 dev vlan_b
+ip addr add 192.168.162.3/24 brd 192.168.162.255 dev vlan_c
+ip addr add 192.168.163.3/24 brd 192.168.163.255 dev vlan_w
+
+ip link set dev vlan_a up
+ip link set dev vlan_b up
+ip link set dev vlan_c up
+ip link set dev vlan_w up
+--------------------------------------------
+
+tcpdump -nnei any -vvv
+
+DNS
+
+To open the DNS port in IPTables, let’s execute the rule:
+sudo iptables -A INPUT -i eth0 -p udp --dport 53 -j ACCEPT
+sudo iptables -A INPUT -i eth0 -p tcp --dport 53 -j ACCEPT
+
+To open the DNS port for a specific network only, we’ll follow the rule
+sudo iptables -A INPUT -i eth0 -s 192.168.1.0/24 -p udp --dport 53 -j ACCEPT
+sudo iptables -A INPUT -i eth0 -s 192.168.1.0/24 -p tcp --dport 53 -j ACCEPT
+
+To remove the rules, specify the same commands, replacing -A with -D, for example:
+sudo iptables -D INPUT -i eth0 -p udp --dport 53 -j ACCEPT
+sudo iptables -D INPUT -i eth0 -p tcp --dport 53 -j ACCEPT
+
+On the access server, you can redirect all DNS requests to your server 
+(that is, if the client manually specifies its own DNS, then requests will still go to the rule specified in the iptables rule):
+
+iptables -t nat -A PREROUTING -s 192.168.1.0/24 -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.2.5
+
+
+To access statistics (port 8053 TCP):
+iptables -A INPUT -s 192.168.5.5 -p tcp --dport 8053 -j ACCEPT
+-----------------------------------------------------
+Docker默認設置的iptables過濾規則完整一覽：
+iptables -N DOCKER
+iptables -N DOCKER-ISOLATION-STAGE-1
+iptables -N DOCKER-ISOLATION-STAGE-2
+iptables -N DOCKER-USER
+iptables -A FORWARD -j DOCKER-USER
+iptables -A FORWARD -j DOCKER-ISOLATION-STAGE-1
+iptables -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -o docker0 -j DOCKER
+iptables -A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+iptables -A FORWARD -i docker0 -o docker0 -j ACCEPT
+iptables -A DOCKER-ISOLATION-STAGE-1 -i docker0 ! -o docker0 -j DOCKER-ISOLATION-STAGE-2
+iptables -A DOCKER-ISOLATION-STAGE-1 -j RETURN
+iptables -A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP
+iptables -A DOCKER-ISOLATION-STAGE-2 -j RETURN
+iptables -A DOCKER-USER -j RETURN
+-----------------------------------------------------
+
+For example, to insert a rule at position #3 in the POSTROUTING chain of the nat table.
+
+# insert rule at position 3
+sudo iptables -t nat -I POSTROUTING 3 -j LOG --log-prefix "NAT3:" --log-level 7
+
+# verify log rule was created
+sudo iptables -t nat -L -n -v --line-number
+
+# delete rule at position 3
+sudo iptables -t nat -D POSTROUTING 3
+
+
+insert() {
+    iptables -t raw -I PREROUTING -p icmp -j LOG --log-prefix 'iptable/raw-PREROUTE' --log-level debug
+    iptables -t mangle -I PREROUTING -p icmp -j LOG --log-prefix 'iptable/mangle-PREROUTE' --log-level debug
+    iptables -t nat -I PREROUTING -p icmp -j LOG --log-prefix 'iptable/nat-PREROUTE' --log-level debug
+
+    iptables -t mangle -I FORWARD -p icmp -j LOG --log-prefix 'iptable/mangle-FORWARD' --log-level debug
+    iptables -t filter -I FORWARD -p icmp -j LOG --log-prefix 'iptable/filter-FORWARD' --log-level debug
+
+    iptables -t mangle -I INPUT -p icmp -j LOG --log-prefix 'iptable/mangle-INPUT' --log-level debug
+    iptables -t filter -I INPUT -p icmp -j LOG --log-prefix 'iptable/filter-INPUT' --log-level debug
+
+
+    iptables -t raw -I OUTPUT -p icmp -j LOG --log-prefix 'iptable/raw-OUTPUT' --log-level debug
+    iptables -t mangle -I OUTPUT -p icmp -j LOG --log-prefix 'iptable/mangle-OUTPUT' --log-level debug
+    iptables -t nat -I OUTPUT -p icmp -j LOG --log-prefix 'iptable/nat-OUTPUT' --log-level debug
+    iptables -t filter -I OUTPUT -p icmp -j LOG --log-prefix 'iptable/filter-OUTPUT' --log-level debug
+
+    iptables -t mangle -I POSTROUTING -p icmp -j LOG --log-prefix 'iptable/mangle-POSTROUTE' --log-level debug
+    iptables -t nat -I POSTROUTING -p icmp -j LOG --log-prefix 'iptable/nat-POSTROUTE' --log-level debug
+ }
+ 
+ function iptable_log() {
+
+	echo -e "\n[${FUNCNAME[0]}]"
+    iptables -t raw    -"${1}" PREROUTING  -p icmp -j LOG --log-prefix 'iptable/raw-PREROUTE '     --log-level debug
+    iptables -t mangle -"${1}" PREROUTING  -p icmp -j LOG --log-prefix 'iptable/mangle-PREROUTE '  --log-level debug
+    iptables -t nat    -"${1}" PREROUTING  -p icmp -j LOG --log-prefix 'iptable/nat-PREROUTE '     --log-level debug
+
+    iptables -t mangle -"${1}" FORWARD     -p icmp -j LOG --log-prefix 'iptable/mangle-FORWARD '   --log-level debug
+    iptables -t filter -"${1}" FORWARD     -p icmp -j LOG --log-prefix 'iptable/filter-FORWARD '   --log-level debug
+
+    iptables -t mangle -"${1}" INPUT       -p icmp -j LOG --log-prefix 'iptable/mangle-INPUT '     --log-level debug
+    iptables -t filter -"${1}" INPUT       -p icmp -j LOG --log-prefix 'iptable/filter-INPUT '     --log-level debug
+
+    iptables -t raw    -"${1}" OUTPUT      -p icmp -j LOG --log-prefix 'iptable/raw-OUTPUT '       --log-level debug
+    iptables -t mangle -"${1}" OUTPUT      -p icmp -j LOG --log-prefix 'iptable/mangle-OUTPUT '    --log-level debug
+    iptables -t nat    -"${1}" OUTPUT      -p icmp -j LOG --log-prefix 'iptable/nat-OUTPUT '       --log-level debug
+    iptables -t filter -"${1}" OUTPUT      -p icmp -j LOG --log-prefix 'iptable/filter-OUTPUT'     --log-level debug
+
+    iptables -t mangle -"${1}" POSTROUTING -p icmp -j LOG --log-prefix 'iptable/mangle-POSTROUTE ' --log-level debug
+    iptables -t nat    -"${1}" POSTROUTING -p icmp -j LOG --log-prefix 'iptable/nat-POSTROUTE '    --log-level debug
+ }
+ 
+function ebtable_log() {
+
+	echo -e "\n[${FUNCNAME[0]}]"
+	ebtables -t broute -"${1}" BROUTING    --log --log-prefix 'ebtable/broute-BROUTING ' --log-level debug
+	ebtables -t nat    -"${1}" PREROUTING  --log --log-prefix 'ebtable/nat-PREROUTE '    --log-level debug
+	ebtables -t nat    -"${1}" POSTROUTING --log --log-prefix 'ebtable/nat-POSTROUTE '   --log-level debug
+	ebtables -t nat    -"${1}" OUTPUT      --log --log-prefix 'ebtable/nat-OUTPUT '      --log-level debug
+	ebtables -t filter -"${1}" INPUT       --log --log-prefix 'ebtable/filter-INPUT '    --log-level debug
+    ebtables -t filter -"${1}" OUTPUT      --log --log-prefix 'ebtable/filter-OUTPUT '   --log-level debug
+	ebtables -t filter -"${1}" FORWARD     --log --log-prefix 'ebtable/filter-FORWARD '  --log-level debug
+ }

@@ -1,0 +1,9 @@
+du -hs *
+
+du -hscx *
+
+-c, --total
+       produce a grand total
+	   
+-x, --one-file-system
+       skip directories on different file systems	   

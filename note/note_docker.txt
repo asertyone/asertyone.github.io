@@ -1,0 +1,13 @@
+
+partial build:
+
+bitbake virtual/kernel -c cleansstate
+bitbake virtual/kernel -f 
+
+
+# .config  : build/tmp/work/auto2731evb_ivt_vp3-poky-linux-gnueabi/linux-mtk-extension/4.14-r0/linux-mtk-extension-4.14/.config
+# boot.img : build/tmp/work/auto2731evb_ivt_vp3-poky-linux-gnueabi/linux-mtk-extension/4.14-r0/deploy-linux-mtk-extension/boot.img
+
+
+
+
