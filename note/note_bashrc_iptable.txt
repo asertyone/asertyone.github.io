@@ -1,0 +1,7 @@
+stty cols 120 rows 60
+alias ipt='iptables'
+alias iptl='iptables --line-numbers -nvL'
+alias ipts='iptables-save'
+alias iptr='iptables-restore -w 3 -- '
+alias iptrnf='iptables-restore -w 3 --noflush -- '
+alias so='source /app_data/albert/.bashrc'
