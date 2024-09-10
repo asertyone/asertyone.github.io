@@ -1,4 +1,4 @@
-
+dbus-monitor --system
 
 返回一個對象的xml描述，描述了obj path、property、接口的方法、信號等等。
 org.freedesktop.DBus.Introspectable.Introspect(out string xml_data)
