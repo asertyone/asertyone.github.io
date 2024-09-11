@@ -1,0 +1,33 @@
+# systemd-analyze
+# 印出系統啟動時間的概覽, 列出了kernel, initrd 及 userspace 的啟動時間, 最後將幾個時間相加的整體啟動時間
+
+root@sa525m:/lib/systemd/system# systemd-analyze
+Startup finished in 5.093s (kernel) + 34.083s (userspace) = 39.176s
+
+# systemd-analyze blame
+# 每個服務啟動所花費的時間。
+
+22.940s dev-ubi0_11.device
+22.799s dev-ubi0_4.device
+22.694s dev-ubi0_6.device
+19.894s macchina_app.service
+ 8.518s init_sys_mss.service
+ 8.408s systemd-udev-trigger.service
+ 4.782s thermal-engine.service
+ 3.829s lxc@rms.service
+ 3.637s mount-var-lib-lxc.service
+ 3.398s jn-emmc-mount.service
+ 3.378s init_audio.service
+ 2.683s mosquitto.service
+ 2.616s init_qti_cnss2_auto.service
+ 2.395s data-mount.service
+ 2.366s persist-mount.service
+ 2.247s dlt.service
+ 2.137s usb.service
+
+
+# 產生boot chart 
+systemd-analyze plot > boot.svg
+
+# 產生完整的依賴關係圖
+systemd-analyze dot | dot -Tsvg -o systemd-dependencies.svg
