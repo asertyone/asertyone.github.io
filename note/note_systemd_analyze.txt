@@ -31,3 +31,19 @@ systemd-analyze plot > boot.svg
 
 # 產生完整的依賴關係圖
 systemd-analyze dot | dot -Tsvg -o systemd-dependencies.svg
+
+
+# 顯示啟動過程中每個服務的關鍵路徑，以及它們的啟動時間。
+# @符號表示該服務在啟動過程中的時間點。它指的是從系統啟動開始到該服務開始啟動之間的時間（以秒為單位）。
+# +符號表示服務的啟動時間長度。它指的是從該服務開始啟動到啟動完成所花費的時間（以秒為單位）。
+
+systemd-analyze critical-chain
+
+# 去掉ANSI 
+# 設定終端不使用顏色
+
+SYSTEMD_COLORS=0 systemd-analyze critical-chain
+
+#  使用sed指令來過濾掉這些轉義序列
+
+systemd-analyze critical-chain | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"
