@@ -43,6 +43,9 @@ systemd-analyze critical-chain
 # 設定終端不使用顏色
 
 SYSTEMD_COLORS=0 systemd-analyze critical-chain
+或者
+export SYSTEMD_COLORS=0
+systemd-analyze critical-chain
 
 #  使用sed指令來過濾掉這些轉義序列
 

@@ -1,0 +1,48 @@
+# 
+journalctl -ef -u conmgr -u jn-config -u jn-vehcomm
+
+
+
+# 第一欄列出開機偏移︰0 表示目前的開機，-1 表示上一次開機，-2 表示再上一次的開機，依此類推。第二欄包含開機 ID，其後是特定開機的限制時間戳記。
+
+root@sa525m:/# journalctl --list-boots --no-pager
+  0 283943f8c2a34559b682a74ab32585dd Tue 1970-01-06 06:31:00 UTC—Tue 1970-01-06 06:31:18 UTC
+
+# 顯示目前開機中的所有訊息
+journalctl -b
+journalctl -b -0
+journalctl _BOOT_ID=283943f8c2a34559b682a74ab32585dd
+
+您可以按特定的欄位過濾日誌輸出。要比對的欄位語法為 FIELD_NAME=MATCHED_VALUE，例如 _SYSTEMD_UNIT=httpd.service。您可以在單個查詢中指定多個比對條件，以更精確地過濾輸出訊息。如需預設欄位的清單，請參閱 man 7 systemd.journal-fields。
+
+顯示特定程序 ID 產生的訊息︰
+
+# journalctl _PID=1039
+Copy
+顯示屬於特定使用者 ID 的訊息︰
+
+# journalctl _UID=1000
+Copy
+顯示來自核心環緩衝區的訊息 (與 dmesg 產生的結果相同)︰
+
+# journalctl _TRANSPORT=kernel
+Copy
+顯示來自服務之標準輸出或錯誤輸出的訊息︰
+
+# journalctl _TRANSPORT=stdout
+Copy
+僅顯示指定服務產生的訊息︰
+
+# journalctl _SYSTEMD_UNIT=avahi-daemon.service
+Copy
+如果指定了兩個不同的欄位，則僅顯示同時與兩個運算式相符的項目︰
+
+# journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1488
+Copy
+如果兩個比對參考了同一個欄位，則顯示與兩個運算式中任意一個相符的所有項目︰
+
+# journalctl _SYSTEMD_UNIT=avahi-daemon.service _SYSTEMD_UNIT=dbus.service
+Copy
+可以使用「+」分隔符將兩個運算式組合成一個邏輯「OR」。下面的範例將顯示來自程序 ID 為 1480 之 Avahi 服務程序的所有訊息，以及來自 D-Bus 服務的所有訊息︰
+
+# journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1480 + _SYSTEMD_UNIT=dbus.service
