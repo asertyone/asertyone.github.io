@@ -1,0 +1,13 @@
+Chain PREROUTING (policy ACCEPT 209K packets, 44M bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1     210K   44M bw_raw_PREROUTING  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+2     210K   44M idletimer_raw_PREROUTING  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT (policy ACCEPT 460K packets, 295M bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_raw_PREROUTING (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain idletimer_raw_PREROUTING (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         

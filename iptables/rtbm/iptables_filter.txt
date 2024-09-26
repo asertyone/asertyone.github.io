@@ -1,0 +1,389 @@
+Chain INPUT (policy DROP 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1     181K   37M DOS_ZONE   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+2     193K   41M RTBM_FLT_INPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+3     181K   39M ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+4     2231  119K bw_INPUT   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+5     2231  119K fw_INPUT   all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6     2231  119K ACCEPT     all  --  lxcbr0 *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     all  --  *      lxcbr0  0.0.0.0/0            0.0.0.0/0           
+2        0     0 ACCEPT     all  --  lxcbr0 *       0.0.0.0/0            0.0.0.0/0           
+3        0     0 FWD_SWM_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 RTBM_FLT_FWD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+5        0     0 oem_fwd    all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 fw_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+7        0     0 bw_FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT (policy DROP 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1     425K  274M OUTPUT_SWM_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+2     425K  274M RTBM_FLT_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+3     181K   39M ACCEPT     all  --  *      lo      0.0.0.0/0            0.0.0.0/0           
+4     2221  121K oem_out    all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+5     2221  121K fw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6     2221  121K st_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+7     2221  121K bw_OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+8     2221  121K ACCEPT     all  --  *      lxcbr0  0.0.0.0/0            0.0.0.0/0           
+
+Chain ADDITION_ZONE (14 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain CELL_PUB_FWD_PORT_ZONE (2 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0           
+2        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0           
+3        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+5        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain CELL_PUB_IO_PORT_ZONE (3 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53
+3        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+5        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+7        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain CELL_TEL_FWD_PORT_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 80,443,452,454,8443,10443
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5684
+3        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5683,5685
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+5        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+6        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+7        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+8        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain CELL_TEL_IO_PORT_ZONE (3 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53,80,443,8883,10443,18883,19001:19009
+2        4   248 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53,5684
+3        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5683,5685
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+5        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+6        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+7        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+8        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain DOS_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain FWD_CELL_PUB_IFACE_ZONE (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 CELL_PUB_FWD_PORT_ZONE  all  --  *      eth_vlan_c  0.0.0.0/0            0.0.0.0/0           
+2        0     0 CELL_PUB_FWD_PORT_ZONE  all  --  *      ap0     0.0.0.0/0            0.0.0.0/0           
+3        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FWD_CELL_TEL_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 CELL_TEL_FWD_PORT_ZONE  all  --  *      eth_vlan_b  0.0.0.0/0            0.0.0.0/0           
+2        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FWD_ETH0_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain FWD_SWM_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain FWD_VLAN_A_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain FWD_VLAN_B_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 VLAN_B_FWD_PORT_ZONE  all  --  *      ccmni0  0.0.0.0/0            0.0.0.0/0           
+2        0     0 VLAN_B_FWD_PORT_ZONE  all  --  *      wlan0   0.0.0.0/0            0.0.0.0/0           
+3        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FWD_VLAN_C_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 VLAN_C_FWD_PORT_ZONE  all  --  *      ap0     0.0.0.0/0            0.0.0.0/0           
+2        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FWD_WIFI_AP_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 WIFI_AP_FWD_PORT_ZONE  all  --  *      eth_vlan_c  0.0.0.0/0            0.0.0.0/0           
+2        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FWD_WIFI_STA_IFACE_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 WIFI_STA_FWD_PORT_ZONE  all  --  *      eth_vlan_b  0.0.0.0/0            0.0.0.0/0           
+2        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_CELL_PUB_IP_ZONE (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 CELL_PUB_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.162.0/24    
+2        0     0 CELL_PUB_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.173.0/24    
+3        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_CELL_TEL_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 CELL_TEL_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            10.0.0.0/8          
+2        0     0 CELL_TEL_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.161.0/24    
+3        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_ETH0_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     all  --  *      *       192.168.1.0/24       0.0.0.0/0           
+2        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            172.17.0.0/16       
+
+Chain INPUT_VLAN_A_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1     8820 1482K VLAN_A_IN_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.160.0/24    
+2        0     0 VLAN_A_IN_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.170.0/24    
+3        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            224.0.0.0/4         
+4        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_VLAN_B_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 VLAN_B_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            10.0.0.0/8          
+2        0     0 VLAN_B_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.161.0/24    
+3        0     0 VLAN_B_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.171.0/24    
+4        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_VLAN_C_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 VLAN_C_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.162.0/24    
+2        0     0 VLAN_C_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.173.0/24    
+3        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_WIFI_AP_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     udp  --  *      *       0.0.0.0              255.255.255.255      multiport dports 67,68
+2        0     0 WIFI_AP_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.162.0/24    
+3        0     0 WIFI_AP_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.173.0/24    
+4        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain INPUT_WIFI_STA_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 WIFI_STA_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            192.168.161.0/24    
+2        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_CELL_PUB_IP_ZONE (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 CELL_PUB_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_CELL_TEL_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        4   248 CELL_TEL_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_ETH0_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_SWM_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT_VLAN_A_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        2    96 ACCEPT     all  --  *      *       0.0.0.0/0            224.0.0.0/4         
+2     242K  234M VLAN_A_OUT_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_VLAN_B_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 VLAN_B_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_VLAN_C_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 VLAN_C_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_WIFI_AP_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 WIFI_AP_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT_WIFI_STA_IP_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 WIFI_STA_IO_PORT_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain RTBM_FLT_FWD (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 FWD_ETH0_IFACE_ZONE  all  --  eth0   *       0.0.0.0/0            0.0.0.0/0           
+2        0     0 FWD_VLAN_A_IFACE_ZONE  all  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0           
+3        0     0 FWD_VLAN_B_IFACE_ZONE  all  --  eth_vlan_b *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 FWD_VLAN_C_IFACE_ZONE  all  --  eth_vlan_c *       0.0.0.0/0            0.0.0.0/0           
+5        0     0 FWD_WIFI_STA_IFACE_ZONE  all  --  wlan0  *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 FWD_WIFI_AP_IFACE_ZONE  all  --  ap0    *       0.0.0.0/0            0.0.0.0/0           
+7        0     0 FWD_CELL_TEL_IFACE_ZONE  all  --  ccmni0 *       0.0.0.0/0            0.0.0.0/0           
+
+Chain RTBM_FLT_INPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 INPUT_ETH0_IP_ZONE  all  --  eth0   *       0.0.0.0/0            0.0.0.0/0           
+2     8820 1482K INPUT_VLAN_A_IP_ZONE  all  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0           
+3        0     0 INPUT_VLAN_B_IP_ZONE  all  --  eth_vlan_b *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 INPUT_VLAN_C_IP_ZONE  all  --  eth_vlan_c *       0.0.0.0/0            0.0.0.0/0           
+5        0     0 INPUT_WIFI_STA_IP_ZONE  all  --  wlan0  *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 INPUT_WIFI_AP_IP_ZONE  all  --  ap0    *       0.0.0.0/0            0.0.0.0/0           
+7        0     0 INPUT_CELL_TEL_IP_ZONE  all  --  ccmni0 *       0.0.0.0/0            0.0.0.0/0           
+
+Chain RTBM_FLT_OUTPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 OUTPUT_ETH0_IP_ZONE  all  --  *      eth0    0.0.0.0/0            0.0.0.0/0           
+2     242K  234M OUTPUT_VLAN_A_IP_ZONE  all  --  *      eth_vlan_a  0.0.0.0/0            0.0.0.0/0           
+3        0     0 OUTPUT_VLAN_B_IP_ZONE  all  --  *      eth_vlan_b  0.0.0.0/0            0.0.0.0/0           
+4        0     0 OUTPUT_VLAN_C_IP_ZONE  all  --  *      eth_vlan_c  0.0.0.0/0            0.0.0.0/0           
+5        0     0 OUTPUT_WIFI_STA_IP_ZONE  all  --  *      wlan0   0.0.0.0/0            0.0.0.0/0           
+6        0     0 OUTPUT_WIFI_AP_IP_ZONE  all  --  *      ap0     0.0.0.0/0            0.0.0.0/0           
+7        2   124 OUTPUT_CELL_TEL_IP_ZONE  all  --  *      ccmni0  0.0.0.0/0            0.0.0.0/0           
+
+Chain SWM_LOG_ZONE (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            LOG flags 0 level 2 prefix "[_SWM_IPT_DROP]:"
+
+Chain UNAUTHORIZED_ZONE (27 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            limit: avg 5/min burst 5 LOG flags 0 level 2 prefix "[_SEC_IPTABLES_DROPPED]:"
+2        0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain VLAN_A_IN_PORT_ZONE (2 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpts:1840:1842
+2        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpts:1834:1835
+3        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490
+4        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22,1800,1801,1805,1830,1850,1870,1890,1895,4010,4627
+5     8820 1482K ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 319,320,802,5000,5001,10322
+6        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+7        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+8        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+9        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+10       0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain VLAN_A_OUT_PORT_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpts:1840:1842
+2        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpts:1834:1835
+3        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490
+4        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22,1800,1801,1805,1830,1850,1870,1890,1895,4010,4627
+5     242K  234M ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 319,320,802,5000,5001,10322
+6        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+7        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+8        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+9        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+10       0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain VLAN_B_FWD_PORT_ZONE (2 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 80,443,452,454,8443,10443
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5684
+3        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+5        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+7        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain VLAN_B_IO_PORT_ZONE (4 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53,1883
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53
+3        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+5        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+7        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain VLAN_C_FWD_PORT_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+2        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+3        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0           
+5        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain VLAN_C_IO_PORT_ZONE (3 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53
+3        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+5        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+6        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+7        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain WIFI_AP_FWD_PORT_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 22,53,80,443,8080,8883,18883,110,143,25,465,587,995,993
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53
+3        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+5        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+6        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain WIFI_AP_IO_PORT_ZONE (3 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+3        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+4        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+5        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain WIFI_STA_FWD_PORT_ZONE (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 80,443,452,454,8443,10443
+2        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5684
+3        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5683,5685
+4        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+5        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+6        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+7        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+8        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain WIFI_STA_IO_PORT_ZONE (2 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490
+2        0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53,80,443,8883,10443,18443,18883
+3        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 53,5684
+4        0     0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            multiport dports 5683,5685
+5        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 3
+6        0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 11
+7        0     0 ADDITION_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+8        0     0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+9        0     0 UNAUTHORIZED_ZONE  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain bw_FORWARD (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_INPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_OUTPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_costly_shared (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_happy_box (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain bw_penalty_box (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain fw_FORWARD (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain fw_INPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain fw_OUTPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain fw_dozable (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain fw_standby (0 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain oem_fwd (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain oem_out (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain st_OUTPUT (1 references)
+num   pkts bytes target     prot opt in     out     source               destination         

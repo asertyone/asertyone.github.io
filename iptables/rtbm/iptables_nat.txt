@@ -1,0 +1,29 @@
+Chain PREROUTING (policy ACCEPT 6 packets, 350 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:800 redir ports 1800
+2        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:801 redir ports 1801
+3        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:805 redir ports 1805
+4        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:830 redir ports 1830
+5        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:834 redir ports 1834
+6        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:835 redir ports 1835
+7        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:840 redir ports 1840
+8        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:841 redir ports 1841
+9        0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:842 redir ports 1842
+10       0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:850 redir ports 1850
+11       0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:870 redir ports 1870
+12       0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:890 redir ports 1890
+13       0     0 REDIRECT   tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:895 redir ports 1895
+14       0     0 DNAT       tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:4626 to:192.168.170.5:4626
+15       0     0 DNAT       tcp  --  eth_vlan_a *       0.0.0.0/0            0.0.0.0/0            tcp dpt:4627 to:192.168.170.5:4627
+
+Chain INPUT (policy ACCEPT 6 packets, 350 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 8890 packets, 1453K bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain POSTROUTING (policy ACCEPT 8888 packets, 1453K bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 MASQUERADE  all  --  *      lxcbr0  192.168.160.0/24     0.0.0.0/0           
+2        0     0 MASQUERADE  all  --  *      *       192.168.170.0/24    !192.168.170.0/24    
+3        2   124 MASQUERADE  all  --  *      ccmni0  0.0.0.0/0            0.0.0.0/0           
