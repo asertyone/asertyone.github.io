@@ -1,0 +1,12 @@
+#
+systemctl show conmgr.service --property=After,Before
+
+systemctl show conmgr.service --property=After,Before,Requires,RequiredBy
+
+systemctl show someipdaemon.service --property=After,Before,Requires,RequiredBy
+
+
+# 當你修改或撰寫 systemd 服務單元檔案後，可以使用以下命令來檢查語法錯誤或問題：
+systemd-analyze verify /etc/systemd/system/<your_service>.service
+
+

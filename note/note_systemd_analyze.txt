@@ -50,3 +50,8 @@ systemd-analyze critical-chain
 #  使用sed指令來過濾掉這些轉義序列
 
 systemd-analyze critical-chain | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"
+
+
+# 當你修改或撰寫 systemd 服務單元檔案後，可以使用以下命令來檢查語法錯誤或問題：
+
+systemd-analyze verify /etc/systemd/system/<your_service>.service
