@@ -1,0 +1,43 @@
+journalctl -u conmgr.service -f --output=short-precise
+
+journalctl --output=short-precise
+
+
+watch -n 1 'systemctl is-active jn-config.service; SYSTEMD_COLORS=0 systemctl
+status jn-config.service --no-pager'
+
+watch -n 1 'systemctl show -p ExecMainPID jn-config.service | cut -d'=' -f2'
+
+ps ax |grep -v grep| egrep "jn-config|bin/conmgr|someip|vehcomm"; echo "---";
+ls -l /data/coredump
+
+
+watch -n 1 'echo -e "\n- process -\n"; ps ax |grep -v grep| egrep
+"jn-config|bin/conmgr|someip|vehcomm"; echo -e "\n- /data/coredump -\n";  ls
+-l /data/coredump; echo -e "\n- vlan -\n"; ifconfig |grep "eth0."; echo -e
+"\n- apn -\n"; ifconfig |grep "rmnet_data";'
+
+watch -n 1  'ps ax |grep -v grep| egrep "jn-config|bin/conmgr|someip|vehcomm"'
+
+ps ax |grep -v grep| egrep "jn-config|bin/conmgr|someip|vehcomm"; ifconfig
+rmnet_data2
+
+journalctl -ef -u conmgr -u jn-config -u jn-vehcomm
+
+journalctl -ef |grep ConMgrConfig
+
+
+export COMMONAPI_CONFIG=/etc/config-clt/commonapi.ini
+export COMMONAPI_SOMEIP_CONFIG=/etc/config-clt/commonapi.ini
+
+
+
+export COMMONAPI_CONFIG=/etc/config-clt/commonapi.ini
+export COMMONAPI_SOMEIP_CONFIG=/etc/config-clt/commonapi.ini
+/usr/bin/config.clt
+
+
+export COMMONAPI_CONFIG=/etc/lifecycle-clt/commonapi.ini
+export COMMONAPI_SOMEIP_CONFIG=/etc/lifecycle-clt/commonapi.ini
+/usr/bin/lifecycle.clt
+

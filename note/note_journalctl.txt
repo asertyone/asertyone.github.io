@@ -46,3 +46,6 @@ Copy
 可以使用「+」分隔符將兩個運算式組合成一個邏輯「OR」。下面的範例將顯示來自程序 ID 為 1480 之 Avahi 服務程序的所有訊息，以及來自 D-Bus 服務的所有訊息︰
 
 # journalctl _SYSTEMD_UNIT=avahi-daemon.service _PID=1480 + _SYSTEMD_UNIT=dbus.service
+
+
+journalctl --output=short-precise
