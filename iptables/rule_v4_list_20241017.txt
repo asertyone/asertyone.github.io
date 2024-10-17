@@ -1,0 +1,1460 @@
+-P INPUT DROP
+-P FORWARD DROP
+-P OUTPUT DROP
+-N FLOOD
+-N LOG_AND_DROP
+-N SAM-FORWARD
+-N SAM-INPUT
+-N SAM-OUTPUT
+-N connman-FORWARD
+-N connman-INPUT
+-N connman-OUTPUT
+-A INPUT -j MARK --set-xmark 0x32/0xffffffff
+-A INPUT -i tether -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -m connlimit --connlimit-above 300 --connlimit-mask 0 --connlimit-saddr -j DROP
+-A INPUT -i tether -p udp -m udp --sport 68 --dport 67 -j ACCEPT
+-A INPUT -s 192.168.2.112/32 -m mac ! --mac-source EC:FA:03:00:CB:11 -j LOG_AND_DROP
+-A INPUT -s 192.168.4.112/32 -m mac ! --mac-source EC:FA:03:00:CB:11 -j LOG_AND_DROP
+-A INPUT -s 192.168.2.36/32 -m mac ! --mac-source EC:FA:03:00:CB:11 -j LOG_AND_DROP
+-A INPUT -s 192.168.6.182/32 -m mac ! --mac-source EC:FA:03:00:CB:11 -j LOG_AND_DROP
+-A INPUT -d 192.168.225.255/32 -p udp -m udp --dport 137 -j DROP
+-A INPUT -d 192.168.225.255/32 -p udp -m udp --dport 138 -j DROP
+-A INPUT -d 192.168.225.255/32 -p udp -m udp --dport 1947 -j DROP
+-A INPUT -d 255.255.225.255/32 -p udp -m udp --dport 1947 -j DROP
+-A INPUT -d 255.255.255.255/32 -p udp -m udp --dport 1947 -j DROP
+-A INPUT -d 127.0.0.1/32 -i eth0 -p tcp -m mac --mac-source EC:FA:03:00:CB:11 -m tcp --dport 9000 -j ACCEPT
+-A INPUT -d 127.0.0.1/32 -i eth0.debug -p tcp -m tcp --dport 9000 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -s 192.168.6.172/32 -m mac --mac-source EC:FA:03:00:CB:11 -j ACCEPT
+-A INPUT -s 192.168.6.209/32 -m mac --mac-source EC:FA:03:00:CB:11 -j ACCEPT
+-A INPUT ! -d 192.168.2.35/32 -i eth0.2 -j LOG_AND_DROP
+-A INPUT ! -d 192.168.4.35/32 -i eth0.4 -j LOG_AND_DROP
+-A INPUT ! -d 192.168.225.1/32 -i eth0.debug -j LOG_AND_DROP
+-A INPUT ! -d 192.168.10.1/32 -i tether -j LOG_AND_DROP
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j FLOOD
+-A INPUT -f -j LOG_AND_DROP
+-A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG FIN,SYN,RST,PSH,ACK,URG -j LOG_AND_DROP
+-A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG FIN,PSH,URG -j LOG_AND_DROP
+-A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG NONE -j LOG_AND_DROP
+-A INPUT -m conntrack --ctstate RELATED -m comment --comment DEBUG -j LOG --log-prefix "IPTABLES-INPUT RELATED: " --log-level 0
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -m icmp --icmp-type 8 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0 -p tcp -m tcp --dport 22 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0.debug -p tcp -m tcp --dport 22 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i ecm0 -p tcp -m tcp --dport 22 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i tether -p tcp -m tcp --dport 22 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0 -p tcp -m tcp --dport 53 -j ACCEPT
+-A INPUT -i eth0 -p udp -m udp --dport 53 -j ACCEPT
+-A INPUT -i tether -p tcp -m tcp --dport 53 -j ACCEPT
+-A INPUT -i tether -p udp -m udp --dport 53 -j ACCEPT
+-A INPUT -i eth0 -p tcp -m tcp --dport 8081 -j ACCEPT
+-A INPUT -i eth0.debug -p tcp -m tcp --dport 8081 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0 -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0 -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0.debug -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0.debug -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i tether -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i tether -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0 -p tcp -m tcp --dport 3490 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i eth0.debug -p tcp -m tcp --dport 3490 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i ecm0 -p tcp -m tcp --dport 3490 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -i tether -p tcp -m tcp --dport 3490 -m comment --comment DEBUG -j ACCEPT
+-A INPUT -j SAM-INPUT
+-A INPUT -j connman-INPUT
+-A INPUT -j LOG_AND_DROP
+-A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+-A FORWARD -j MARK --set-xmark 0x33/0xffffffff
+-A FORWARD -i tether -m conntrack --ctstate INVALID -j DROP
+-A FORWARD -i eth0 -m conntrack --ctstate INVALID -j DROP
+-A FORWARD -i tether -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -m connlimit --connlimit-above 150 --connlimit-mask 32 --connlimit-saddr -j DROP
+-A FORWARD -i tether -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -m connlimit --connlimit-above 1200 --connlimit-mask 0 --connlimit-daddr -j DROP
+-A FORWARD -m conntrack --ctstate RELATED -m comment --comment DEBUG -j LOG --log-prefix "IPTABLES-FORWARD RELATED: " --log-level 0
+-A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -i tether -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A FORWARD -i ecm0 -p tcp -m tcp --dport 3490 -m comment --comment DEBUG -j ACCEPT
+-A FORWARD -j SAM-FORWARD
+-A FORWARD -j connman-FORWARD
+-A FORWARD -j LOG_AND_DROP
+-A OUTPUT -j MARK --set-xmark 0x34/0xffffffff
+-A OUTPUT -o rmnet+ -m conntrack --ctstate INVALID -j DROP
+-A OUTPUT -o tether -p udp -m udp --sport 67 --dport 68 -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A OUTPUT -m conntrack --ctstate RELATED -m comment --comment DEBUG -j LOG --log-prefix "IPTABLES-OUTPUT RELATED: " --log-level 0
+-A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A OUTPUT -p icmp -m icmp --icmp-type 8 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o eth0.debug -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o eth0.debug -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o tether -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o tether -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o eth0.4 -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o eth0.4 -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o eth0.2 -p tcp -m tcp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o eth0.2 -p udp -m udp --dport 5001:5005 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -d 127.0.0.1/32 -p tcp -m tcp --dport 8999 -j ACCEPT
+-A OUTPUT -o rmnet_data0 -p tcp -m tcp --dport 53 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o rmnet_data0 -p udp -m udp --dport 53 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o rmnet_data0 -p tcp -m tcp --dport 8883 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o rmnet_data0 -p tcp -m tcp --dport 443 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -o rmnet_data0 -p tcp -m tcp --dport 80 -m comment --comment DEBUG -j ACCEPT
+-A OUTPUT -j SAM-OUTPUT
+-A OUTPUT -j connman-OUTPUT
+-A OUTPUT -j LOG_AND_DROP
+-A FLOOD -m limit --limit 3/sec -j RETURN
+-A FLOOD -j LOG_AND_DROP
+-A LOG_AND_DROP -p udp -m udp --sport 68 --dport 67 -m limit --limit 1/hour -m mark --mark 0x32 -j NFLOG --nflog-prefix  "DENY INPUT " --nflog-group 30
+-A LOG_AND_DROP -m mark --mark 0x32 -m hashlimit --hashlimit-upto 12/(null) --hashlimit-burst 1 --hashlimit-mode srcip,srcport,dstip,dstport --hashlimit-name hashtable -j NFLOG --nflog-prefix  "DENY INPUT " --nflog-group 30
+-A LOG_AND_DROP -m mark --mark 0x33 -m hashlimit --hashlimit-upto 12/(null) --hashlimit-burst 1 --hashlimit-mode srcip,srcport,dstip,dstport --hashlimit-name hashtable -j NFLOG --nflog-prefix  "DENY FORWARD " --nflog-group 30
+-A LOG_AND_DROP -m mark --mark 0x34 -m hashlimit --hashlimit-upto 12/(null) --hashlimit-burst 1 --hashlimit-mode srcip,srcport,dstip,dstport --hashlimit-name hashtable -j NFLOG --nflog-prefix  "DENY OUTPUT " --nflog-group 30
+-A LOG_AND_DROP -j DROP
+-A connman-FORWARD -d 52.219.46.4/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.88/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.5/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.205.104.153/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.205.104.132/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.130.143.169/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.218.200.63/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.96/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.101/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.221/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.168/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.116/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.168/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.49/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.89/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.246/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.134/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.5/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.121/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.220.201.92/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.16.226.244/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.197/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.222.79.8/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.222.79.32/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.60/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.114/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.221/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.130/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.241/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.77/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.112/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.25/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.0/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.113/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.62/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.204/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.82/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.85/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.36/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.254/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.69/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.210/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.26/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.32/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.232/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.85/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.148/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.93/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.53/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.22.252.82/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.14.55.183/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.116.133.225/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.190.46.25/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.116.233.40/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.223.7.46/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.59.147.24/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.146.97.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.140/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.210/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.181/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.230/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.26/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.145/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.24/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.196/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.10/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.138/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.250/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.134/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.90/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.189.200.165/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.146.121.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.59.217.166/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.119.75.246/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.21.130.135/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.12.42.197/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.46.17.67/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.46.17.64/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.129/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.13/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.210.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.89/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.156/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.205.107.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.189/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.1/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.210.6/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.134/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.78/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.113/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.131.161.26/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.190.128.131/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.191.58.33/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.140.35.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.19.133.74/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.58.43.192/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.117.65.238/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.58.121.163/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.135.160.176/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.128.185.182/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.130.20.49/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.15.73.114/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.136.163.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.140.25.223/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.223.199.24/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.128.5.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.191.54.29/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.116.176.107/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.22.255.136/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.219.174.219/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.34/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.16/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.33/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.13/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.220/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.169/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.224/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.230/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.6/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.19.146.186/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.105/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.114/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.241/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.222/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.164/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.53/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.80/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.28/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.101/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.10/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.206/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.10/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.122/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.160/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.198/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.167/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.88/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.174/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.22.69.96/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.133.68.188/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.223.218.135/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.20.178.111/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.190.73.91/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.20.83.13/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.190.166.72/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.131.19.131/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.19.18.103/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.132.131.8/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.133.180.209/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.58.204.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.59.107.147/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.23.45.44/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.202/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.114/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.40/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.189/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.1/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.58/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.97/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.104/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.93/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.74/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.171/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.157/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.190/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.173/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.188/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.177/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.190/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.120/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.212.251.212/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.212.251.211/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.212.251.196/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.58.21.97/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.189.206.116/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.133.40.137/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.18.252.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.133.46.89/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.14.43.31/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.141.225.146/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.12.26.192/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.42/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.212.249.154/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.212.249.148/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.116/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.242/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.165/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.38/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.81/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.16/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.226/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.46/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.144/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.228/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.145/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.233/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.222/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.116/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.25/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.1/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.85/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.64/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.45/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.80/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.238/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.136/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.8/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.164/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.130/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.84/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.112/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.29/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.225/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.158/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.166/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.129/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.198/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.194/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -s 192.168.6.209/32 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -s 192.168.6.172/32 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -s 192.168.6.182/32 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -s 192.168.4.112/32 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.0/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.92/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.41/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.50/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.136/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.12/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.56/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.225.19.209/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.188.191.229/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.23.223.35/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.142.37.29/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.133.30.146/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.26.101/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.224.216.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.134.129.43/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.185/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.176/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.86/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.53/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.222/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.84/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.4/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.176/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.202/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.37/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.10/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.125/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.37/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.219.78.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.219.78.143/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.48.104.178/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.48.104.164/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.53.35.115/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.53.35.107/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 104.96.163.205/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 104.96.163.213/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.39.223.7/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.39.223.9/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.138.88.153/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.52.241/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.133.210.180/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.219.172.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.138/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.156/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.177/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.62/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.12/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.39/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.250/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.76/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.136.229.146/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.19.17.88/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.191.125.220/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.188.116.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.15.191/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.223.173.109/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.134.19.78/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.188.92.192/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.178/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.61/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.180/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.170/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.98/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.9/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.63/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.86/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.109/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.73/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.194/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.180/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.26/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.156/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.104/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.227/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.128/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.201/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.72/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.221/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.140/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.133/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.121/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.234/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.74/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.233/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.64/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.133/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.81/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.121/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.108/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.142/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.182/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.255/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.118/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.13/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.90/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.114/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.98/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.85/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.222.41.254/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.13.142.189/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.14.30.63/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.23.121.255/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.189.163.8/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.117.204.228/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.45.61/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.68.234/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.153/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.6/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.160/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.109/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.132/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.136/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.154/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.42/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.205/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.43/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.89/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.20/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.136/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.245/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.72/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.38/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.74/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.154/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.169/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.89/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.33/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.186/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.37/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.198/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.20/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.118/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.212/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.141/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.50/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.146/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.238/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.110/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.105/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.82/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.77/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.34/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.8/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.86/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.11/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.193/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.214.95.96/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.216/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.34/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.36/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.66/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.212/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.138/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.41/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.78/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.49/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.186/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.16/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.70/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.206/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.135/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.45/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.66/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.124/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.178/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.73/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.50/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.15.77.244/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.224.102.74/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.188.30.219/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.189.107.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.189.166.194/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.59.252.209/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.132.227.68/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.128.1/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.82/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.70/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.10/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.46/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.170/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.146/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.122/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.182/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.98/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.156/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.202/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.157/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.225/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.38/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.190/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.21/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.188/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.183/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.140/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.19/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.162/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.204.115.149/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.204.115.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.73/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.192/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.186/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.10/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.112/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.120/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.163/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.132/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.123/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.61/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.111/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.120/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.154/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.77/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.175/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.77/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.114/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.96/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.1/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.162/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.52/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.95/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.65/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.146/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.62/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.162/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.250/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.140/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.182/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.184/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.76/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.124/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.64/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.167/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.51/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.194/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.29/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.170/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.58/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.54/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.81/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.149/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.184/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.144/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.240/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.245/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.69/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.242/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.117/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.134/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.142/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.57/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.226/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.49/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.217/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.168/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.158/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.52/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.54/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.102/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.122/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.56/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.196/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.165/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.118/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.110/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.58/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.102/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.184/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.226/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.153/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.118/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.110/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.124/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.57/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.137/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.6/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.107/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.157/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.166/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.26/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.185/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.213/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.206/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.244/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.106/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.138/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.116/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.108/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.218/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.158/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.172/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.87/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.102/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.247/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.94/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.192/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.28/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.58/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.177/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.47/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.121/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.209/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.112/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.127/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.60/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.66/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.32/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.193/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.187/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.93/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.175/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.46/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.117/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.119/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.150/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.246/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.40/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.140/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.143/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.15/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.238/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.254/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.142/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.27/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.112/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.145/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.230/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.234/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.205/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.144/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.17/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.166/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.46/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.246/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.149/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.44/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.103/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.171/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.177/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.253/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.186/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.128/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.54/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.144/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.213/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.63/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.124/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.168/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.41/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.167/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.100/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.140/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.142/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.248/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.174/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.161/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.50/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.41/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.137/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.12/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.94/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.172/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.148/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.224/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.98/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.94/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.159/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.151/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.212/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.115/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.208.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.130/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.180/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.105/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.127/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.140.173/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.142/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.204/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.209/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.42/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.231/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.116/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.242/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.136/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.128/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.16/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.48/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.46.101/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.161/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.22/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.210/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.214/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.190/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.107/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.243/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.36/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.178/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.209.6/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.176/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.200/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.40/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.254/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.178/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.43/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.118/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.53/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.236/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.13/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.214/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.182/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.6/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.188/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.234/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.243/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.21/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.31/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.190/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.66/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.152/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.214/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.110/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.78/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.70/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.222/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.125/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.77/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.28/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.246/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.26/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.179/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.171.254/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.14/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.219/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.2/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.196/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.68/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.34/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.181/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.194/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.187/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.122/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.56/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.206/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.88/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.218/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.139.196/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.217/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.136.154/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.145/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.168.5/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.75.100/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.126/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.137.142/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.72.205/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.135.124/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.51/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.47.172/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.170.242/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.134.139/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.5.138.134/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.219.169.90/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 54.197.55.215/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.22.33.125/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.206.78.147/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 10.189.126.7/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.214.95.68/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.214.95.81/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.223.81.154/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.189.133.34/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.134.66.156/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.58.191.188/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.15.117.80/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.221.139.155/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.216.137.129/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.131.213.71/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.219.28.18/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.22.83.63/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 2.23.142.30/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.58.157.20/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 23.58.157.16/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 52.22.84.9/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 13.95.171.183/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 45.60.32.80/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 216.239.35.12/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 216.239.35.0/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 216.239.35.8/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 216.239.35.4/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 20.73.225.111/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 10.187.104.92/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.141.114.155/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.15.95.39/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.20.185.177/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.118.224.254/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.190.146.157/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.17.91.214/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 3.21.211.94/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 18.188.229.81/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -d 10.187.104.25/32 -i eth0 -o rmnet_data1 -j LOG_AND_DROP
+-A connman-FORWARD -s 192.168.2.36/32 -i eth0 -o rmnet_data1 -j ACCEPT
+-A connman-FORWARD -i eth0 -o rmnet_data2 -j ACCEPT
+-A connman-FORWARD -i eth0 -o rmnet_data0 -j ACCEPT
+-A connman-OUTPUT -d 52.22.84.9/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 45.60.32.80/32 -p tcp -m tcp --dport 9031 -j ACCEPT
+-A connman-OUTPUT -d 45.60.32.80/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.118/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.158/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.142/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.140/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.111/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.72/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.77/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.36/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 216.239.35.8/32 -p tcp -m tcp --dport 123 -j ACCEPT
+-A connman-OUTPUT -d 216.239.35.0/32 -p tcp -m tcp --dport 123 -j ACCEPT
+-A connman-OUTPUT -d 216.239.35.4/32 -p tcp -m tcp --dport 123 -j ACCEPT
+-A connman-OUTPUT -d 216.239.35.12/32 -p tcp -m tcp --dport 123 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.167/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.38/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.206/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.193/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.226/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.243/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.74/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.165/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 20.73.225.111/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.243/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.242/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.57/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.116/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.166/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.142/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.138/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.129/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.190/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.116/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.116/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.124/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.150/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 23.212.249.148/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 23.212.249.154/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 13.95.171.183/32 -p tcp -m tcp --dport 8443 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.165/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.224/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.33/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.186/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.208.2/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.125/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.42/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.22.83.63/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.253/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.242/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.187/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.217/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.182/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.22/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.145/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 23.212.251.196/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 23.212.251.211/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 23.212.251.212/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.254/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.255/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.58/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.21/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.114/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.22/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.175/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.103/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.187/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.120/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.190/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.177/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.157/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.154/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.188/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.219/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.139/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.38/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.134/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.158/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.120/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.222/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.173/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.88/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.177/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.27/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.26/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.178/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.190/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.132/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.184/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.29/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.127/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.190/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.95/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.180/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.171/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.204/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.150/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.177/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.157/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.135/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.16/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.171/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.74/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.64/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.34/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.112/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.93/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.140/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.82/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.15/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.164/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.105/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.104/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.22/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.97/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.180/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.151/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.18/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.64/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.58/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.133/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.41/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.166/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.51/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.46/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.48/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.168/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.30/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.179/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.37/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.136/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.1/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.246/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.218/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.248/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.70/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.152/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.50/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.84/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.124/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.106/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.124/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.143/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.168/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.189/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.87/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.40/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.44/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.114/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.43/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.156/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.107/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.202/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.82/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.2/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.149/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.162/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.108/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.17/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.106/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.254/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.93/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.137/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.202/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.214/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.89/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.13/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.182/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.2/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.118/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.122/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.175/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.136/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.212/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.32/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.77/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.10/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.63/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.50/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.142/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.34/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.174/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.88/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.70/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.146/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.167/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.81/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.47/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.128/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.198/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.19/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.142/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.208.6/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.160/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.188/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.228/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.43/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.122/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.186/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.154/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.185/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.122/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.63/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.254/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.38/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.250/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.190/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.10/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.112/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.1/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.118/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.196/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.182/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.51/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.206/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.10/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.167/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.145/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.145/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.178/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.221/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.142/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.178/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.230/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.36/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.213/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.247/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.101/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.196/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.77/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.54/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.28/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.210/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.80/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.53/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.238/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.5/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.40/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.114/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.66/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.132/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.94/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.6/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.159/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.4/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.208.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.106/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.164/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.154/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.52/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.115/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.176/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.205/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.50/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.222/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.182/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.241/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.102/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.114/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.245/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.126/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.121/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.105/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.170/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.73/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.128/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.144/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.186/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.37/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.206/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.90/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.119/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.6/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.62/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.39/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.222/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.230/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.224/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.13/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.169/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.170/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.220/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.125/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.52/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.90/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.13/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.201/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.150/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.18/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.134/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.156/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.46/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.8/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.33/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.16/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.58/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.16/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.34/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 10.187.32.114/32 -o rmnet_data0 -p udp -m udp --dport 53 -j ACCEPT
+-A connman-OUTPUT -d 10.187.32.114/32 -o rmnet_data0 -p tcp -m tcp --dport 53 -j ACCEPT
+-A connman-OUTPUT -d 10.187.48.114/32 -o rmnet_data0 -p udp -m udp --dport 53 -j ACCEPT
+-A connman-OUTPUT -d 10.187.48.114/32 -o rmnet_data0 -p tcp -m tcp --dport 53 -j ACCEPT
+-A connman-OUTPUT -d 10.187.104.25/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.134.129.43/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.224.216.18/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.117.65.238/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.15.73.114/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 13.58.121.163/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.135.160.176/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.128.185.182/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.130.20.49/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 10.189.126.7/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 3.19.133.74/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.140.35.106/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.191.58.33/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.131.19.131/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.190.128.131/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.131.161.26/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.19.18.103/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 13.59.107.147/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.113/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.194/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.140/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.78/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.133.180.209/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.120/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.2/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.134/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.138/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.86/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.162/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.6/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.169/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.166/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.54/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.56/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.70/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.210.6/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.50/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.198/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.18/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.22.255.136/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.140.25.223/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.219.174.219/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.223.199.24/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.191.54.29/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 13.58.43.192/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.116.176.107/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.128.5.152/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.53/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.1/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.45/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.189/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.194/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.162/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.242/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 23.205.107.22/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.98/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.218/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.74/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.156/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.154/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.78/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.89/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.183/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.210.2/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.13/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.129/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 23.46.17.64/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 23.46.17.67/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.89/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.136/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.64/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.98/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.118/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.8/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.12.42.197/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.21.130.135/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.221.15.191/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.119.75.246/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 13.59.217.166/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.146.121.30/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.189.200.165/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.134.19.78/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.11/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.157/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.90/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.146/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.208.22/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.136/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.69/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.134/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.205/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.30/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.227/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.109/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.181/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.250/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.138/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.121/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.110/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.208.10/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.196/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.193/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.226/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.66/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.112/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.56/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.24/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.184/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.192/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.34/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.244/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.222/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.141/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.2/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.226/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.130/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.234/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.121/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.127/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.174/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.145/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.196/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.66/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.26/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.161/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.54/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.101/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.26/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.138.184/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.194/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.230/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.216/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.212/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.12/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.133/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.181/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.210/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.140/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.81/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.98/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.152/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.149/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.126/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.146.97.30/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 13.59.147.24/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.223.7.46/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.116.233.40/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.190.46.25/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.116.133.225/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.14.55.183/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.22.252.82/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.202/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.172/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.84/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.153/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.150/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.53/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.126/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.61/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.170/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.140/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.152/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.78/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.172/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.110/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.93/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.148/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.94/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.177/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.12/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.86/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.158/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.238/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.85/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.232/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.16/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.32/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.104/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.176/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.208.26/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.210/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.92/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.205/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.126/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.69/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.172/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.254/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.36/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.85/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.42/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.41/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.82/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.94/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.204/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.12/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.150/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.62/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.135.28/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.73/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.110/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.113/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.0/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.61/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.25/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.209/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.112/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.234/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.77/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.150/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.6/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.192/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.134.152/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.80/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.137.200/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.160/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.22/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.152/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.240/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.250/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.62/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.238/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.42/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.241/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.130/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.53/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.221/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.114/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.185/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.60/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 23.222.79.32/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 23.222.79.8/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 52.219.209.22/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.186/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.10/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.197/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.206/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.19.146.186/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.16.226.244/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.220.201.92/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.12.26.192/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.18.252.150/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.141.225.146/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 18.189.206.116/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.14.43.31/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.9/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.163/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.46/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.121/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.5/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.126/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.134/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.212/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.31/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.171.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.246/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.89/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.124/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.148/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.168.49/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.72.168/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.66/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.116/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.139.107/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.168/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.18/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.58/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.144/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.221/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.101/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.96/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.140.20/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 18.218.200.63/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 3.130.143.169/32 -p tcp -m tcp --dport 8883 -j ACCEPT
+-A connman-OUTPUT -d 23.205.104.132/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 23.205.104.153/32 -p tcp -m tcp --dport 443 -j ACCEPT
+-A connman-OUTPUT -d 52.219.75.5/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.47.88/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.130/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.46.4/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.170.142/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 52.219.169.98/32 -p tcp -m tcp --dport 80 -j ACCEPT
+-A connman-OUTPUT -d 3.5.136.110/32 -p tcp -m tcp --dport 80 -j ACCEPT

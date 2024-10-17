@@ -1,0 +1,1481 @@
+Chain INPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 115K   20M MARK       all  --  *      *       0.0.0.0/0            0.0.0.0/0            MARK set 0x32
+    0     0 DROP       tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x17/0x02 #conn src/0 > 300
+    0     0 ACCEPT     udp  --  tether *       0.0.0.0/0            0.0.0.0/0            udp spt:68 dpt:67
+    0     0 LOG_AND_DROP  all  --  *      *       192.168.2.112        0.0.0.0/0            MAC ! EC:FA:03:00:CB:11
+    0     0 LOG_AND_DROP  all  --  *      *       192.168.4.112        0.0.0.0/0            MAC ! EC:FA:03:00:CB:11
+    0     0 LOG_AND_DROP  all  --  *      *       192.168.2.36         0.0.0.0/0            MAC ! EC:FA:03:00:CB:11
+    0     0 LOG_AND_DROP  all  --  *      *       192.168.6.182        0.0.0.0/0            MAC ! EC:FA:03:00:CB:11
+    0     0 DROP       udp  --  *      *       0.0.0.0/0            192.168.225.255      udp dpt:137
+    0     0 DROP       udp  --  *      *       0.0.0.0/0            192.168.225.255      udp dpt:138
+    0     0 DROP       udp  --  *      *       0.0.0.0/0            192.168.225.255      udp dpt:1947
+    0     0 DROP       udp  --  *      *       0.0.0.0/0            255.255.225.255      udp dpt:1947
+    0     0 DROP       udp  --  *      *       0.0.0.0/0            255.255.255.255      udp dpt:1947
+    0     0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            127.0.0.1            MAC EC:FA:03:00:CB:11 tcp dpt:9000
+    0     0 ACCEPT     tcp  --  eth0.debug *       0.0.0.0/0            127.0.0.1            tcp dpt:9000 /* DEBUG */
+    0     0 ACCEPT     all  --  *      *       192.168.6.172        0.0.0.0/0            MAC EC:FA:03:00:CB:11
+    0     0 ACCEPT     all  --  *      *       192.168.6.209        0.0.0.0/0            MAC EC:FA:03:00:CB:11
+    0     0 LOG_AND_DROP  all  --  eth0.2 *       0.0.0.0/0           !192.168.2.35        
+    0     0 LOG_AND_DROP  all  --  eth0.4 *       0.0.0.0/0           !192.168.4.35        
+    0     0 LOG_AND_DROP  all  --  eth0.debug *       0.0.0.0/0           !192.168.225.1       
+    0     0 LOG_AND_DROP  all  --  tether *       0.0.0.0/0           !192.168.10.1        
+21956 5323K ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0           
+  104  6144 FLOOD      tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x17/0x02
+    0     0 LOG_AND_DROP  all  -f  *      *       0.0.0.0/0            0.0.0.0/0           
+    0     0 LOG_AND_DROP  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x3F/0x3F
+    0     0 LOG_AND_DROP  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x3F/0x29
+    0     0 LOG_AND_DROP  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x3F/0x00
+    2   191 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED /* DEBUG */ LOG flags 0 level 0 prefix "IPTABLES-INPUT RELATED: "
+81462   13M ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED
+    0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 8 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0.debug *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22 /* DEBUG */
+    9   468 ACCEPT     tcp  --  ecm0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22 /* DEBUG */
+    0     0 ACCEPT     tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+ 9871  721K ACCEPT     udp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+    0     0 ACCEPT     tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53
+    0     0 ACCEPT     udp  --  tether *       0.0.0.0/0            0.0.0.0/0            udp dpt:53
+   92  5520 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8081
+    0     0 ACCEPT     tcp  --  eth0.debug *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8081 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0.debug *       0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  eth0.debug *       0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  tether *       0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490 /* DEBUG */
+    0     0 ACCEPT     tcp  --  eth0.debug *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490 /* DEBUG */
+    3   156 ACCEPT     tcp  --  ecm0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490 /* DEBUG */
+    0     0 ACCEPT     tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490 /* DEBUG */
+ 2012  254K SAM-INPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 2012  254K connman-INPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 2012  254K LOG_AND_DROP  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+22669 1346K TCPMSS     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x06/0x02 TCPMSS clamp to PMTU
+ 338K  149M MARK       all  --  *      *       0.0.0.0/0            0.0.0.0/0            MARK set 0x33
+    0     0 DROP       all  --  tether *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID
+ 2397  230K DROP       all  --  eth0   *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID
+    0     0 DROP       tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x17/0x02 #conn src/32 > 150
+    0     0 DROP       tcp  --  tether *       0.0.0.0/0            0.0.0.0/0            tcp flags:0x17/0x02 #conn dst/0 > 1200
+    0     0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED /* DEBUG */ LOG flags 0 level 0 prefix "IPTABLES-FORWARD RELATED: "
+ 323K  148M ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED
+    0     0 ACCEPT     icmp --  tether *       0.0.0.0/0            0.0.0.0/0            icmptype 8
+    0     0 ACCEPT     tcp  --  ecm0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3490 /* DEBUG */
+12932  794K SAM-FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+12932  794K connman-FORWARD  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+   20   800 LOG_AND_DROP  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain OUTPUT (policy DROP 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 169K   92M MARK       all  --  *      *       0.0.0.0/0            0.0.0.0/0            MARK set 0x34
+    6   312 DROP       all  --  *      rmnet+  0.0.0.0/0            0.0.0.0/0            ctstate INVALID
+    0     0 ACCEPT     udp  --  *      tether  0.0.0.0/0            0.0.0.0/0            udp spt:67 dpt:68
+17316 5025K ACCEPT     all  --  *      lo      0.0.0.0/0            0.0.0.0/0           
+  179 15837 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED /* DEBUG */ LOG flags 0 level 0 prefix "IPTABLES-OUTPUT RELATED: "
+ 147K   87M ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED
+    0     0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 8 /* DEBUG */
+    0     0 ACCEPT     tcp  --  *      eth0.debug  0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  *      eth0.debug  0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     tcp  --  *      tether  0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  *      tether  0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     tcp  --  *      eth0.4  0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  *      eth0.4  0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     tcp  --  *      eth0.2  0.0.0.0/0            0.0.0.0/0            tcp dpts:5001:5005 /* DEBUG */
+    0     0 ACCEPT     udp  --  *      eth0.2  0.0.0.0/0            0.0.0.0/0            udp dpts:5001:5005 /* DEBUG */
+   24  1440 ACCEPT     tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:8999
+    0     0 ACCEPT     tcp  --  *      rmnet_data0  0.0.0.0/0            0.0.0.0/0            tcp dpt:53 /* DEBUG */
+ 2828  215K ACCEPT     udp  --  *      rmnet_data0  0.0.0.0/0            0.0.0.0/0            udp dpt:53 /* DEBUG */
+   61  3660 ACCEPT     tcp  --  *      rmnet_data0  0.0.0.0/0            0.0.0.0/0            tcp dpt:8883 /* DEBUG */
+    0     0 ACCEPT     tcp  --  *      rmnet_data0  0.0.0.0/0            0.0.0.0/0            tcp dpt:443 /* DEBUG */
+    0     0 ACCEPT     tcp  --  *      rmnet_data0  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 /* DEBUG */
+ 1841  111K SAM-OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+ 1841  111K connman-OUTPUT  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+  424 25480 LOG_AND_DROP  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain FLOOD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+  104  6144 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            limit: avg 3/sec burst 5
+    0     0 LOG_AND_DROP  all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain LOG_AND_DROP (778 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 NFLOG      udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp spt:68 dpt:67 limit: avg 1/hour burst 5 mark match 0x32 nflog-prefix  "DENY INPUT " nflog-group 30
+  844 53827 NFLOG      all  --  *      *       0.0.0.0/0            0.0.0.0/0            mark match 0x32 limit: up to 12/(null) burst 1 mode srcip-srcport-dstip-dstport nflog-prefix  "DENY INPUT " nflog-group 30
+    3   305 NFLOG      all  --  *      *       0.0.0.0/0            0.0.0.0/0            mark match 0x33 limit: up to 12/(null) burst 1 mode srcip-srcport-dstip-dstport nflog-prefix  "DENY FORWARD " nflog-group 30
+  143  8620 NFLOG      all  --  *      *       0.0.0.0/0            0.0.0.0/0            mark match 0x34 limit: up to 12/(null) burst 1 mode srcip-srcport-dstip-dstport nflog-prefix  "DENY OUTPUT " nflog-group 30
+ 2471  284K DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0           
+
+Chain SAM-FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain SAM-INPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain SAM-OUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain connman-FORWARD (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.4         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.88        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.5         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.205.104.153      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.205.104.132      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.130.143.169       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.218.200.63       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.96        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.101      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.221       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.18       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.168       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.116       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.168       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.49       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.89       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.246      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.14       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.134      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.5         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.121       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.220.201.92       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.16.226.244        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.197       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.222.79.8         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.222.79.32        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.60        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.114      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.221       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.130      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.241       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.152       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.77        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.112       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.25       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.0        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.113       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.62       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.150         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.204       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.82       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.85        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.36       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.254      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.69       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.210      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.26       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.32        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.232       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.85       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.148       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.93       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.152       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.53       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.150      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.22.252.82         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.14.55.183         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.116.133.225      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.190.46.25        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.116.233.40       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.223.7.46         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.59.147.24        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.146.97.30         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.140       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.210      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.181      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.230      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.26       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.145      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.24        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.196       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.10       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.138      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.250      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.30       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.134      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.90       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.189.200.165      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.146.121.30        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.59.217.166       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.119.75.246       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.21.130.135        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.12.42.197         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.46.17.67         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.46.17.64         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.129      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.13        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.210.2        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.89       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.156       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.205.107.22       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.189      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.1         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.210.6        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.134      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.78       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.113      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.131.161.26        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.190.128.131      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.191.58.33        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.140.35.106        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.19.133.74         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.58.43.192        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.117.65.238       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.58.121.163       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.135.160.176       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.128.185.182       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.130.20.49         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.15.73.114         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.136.163.126       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.140.25.223        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.223.199.24       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.128.5.152         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.191.54.29        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.116.176.107      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.22.255.136        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.219.174.219      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.34       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.16        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.33        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.18       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.13        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.220       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.169      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.224       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.230      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.6        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.19.146.186        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.105       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.114      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.241       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.222      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.164       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.53       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.80        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.28        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.101         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.10       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.206      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.10       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.122      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.160       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.198      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.167         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.88        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.174      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.22.69.96          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.133.68.188        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.223.218.135      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.20.178.111        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.190.73.91        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.20.83.13          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.190.166.72       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.131.19.131        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.19.18.103         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.132.131.8         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.133.180.209       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.58.204.106       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.59.107.147       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.23.45.44          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.202      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.114      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.40        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.189       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.1        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.58       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.97       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.104       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.93        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.74       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.171         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.157      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.190      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.173         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.188       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.177      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.190      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.120       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.212.251.212      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.212.251.211      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.212.251.196      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.58.21.97         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.189.206.116      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.133.40.137        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.18.252.150        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.133.46.89         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.14.43.31          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.141.225.146       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.12.26.192         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.42       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.2        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.212.249.154      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.212.249.148      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.116       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.242      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.165      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.38       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.81        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.16       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.226      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.46       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.144       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.14          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.228       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.145       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.233       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.222      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.116       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.25        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.1         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.85        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.64        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.45        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.80        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.238      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.136         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.8        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.164       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.130      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.84        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.112       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.29       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.225       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.158      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.166      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.129       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.198      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.194      
+    0     0 LOG_AND_DROP  all  --  *      rmnet_data1  192.168.6.209        0.0.0.0/0           
+    0     0 LOG_AND_DROP  all  --  *      rmnet_data1  192.168.6.172        0.0.0.0/0           
+    0     0 LOG_AND_DROP  all  --  *      rmnet_data1  192.168.6.182        0.0.0.0/0           
+    0     0 LOG_AND_DROP  all  --  *      rmnet_data1  192.168.4.112        0.0.0.0/0           
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.0         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.92        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.41          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.50       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.136       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.12        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.56        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.225.19.209       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.188.191.229      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.23.223.35         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.142.37.29         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.133.30.146        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.26.101       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.224.216.18       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.134.129.43        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.185       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.176       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.86       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.53        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.222      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.84        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.4           
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.176       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.202      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.37        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.10       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.125         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.37        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.219.78.150       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.219.78.143       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.48.104.178       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.48.104.164       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.53.35.115        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.53.35.107        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            104.96.163.205      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            104.96.163.213      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.39.223.7         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.39.223.9         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.138.88.153        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.52.241       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.133.210.180       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.219.172.126      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.138      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.156       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.177         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.62       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.12          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.39          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.250      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.76        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.136.229.146       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.19.17.88          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.191.125.220      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.188.116.106      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.15.191       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.223.173.109      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.134.19.78         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.188.92.192       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.178      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.61       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.152       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.180       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.170      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.98       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.2           
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.9         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.63          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.86       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.109      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.73        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.18       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.194      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.180         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.26       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.156         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.14       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.104       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.227         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.128       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.14       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.150      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.201         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.72        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.221         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.140         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.133       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.121      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.234      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.74       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.233       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.64          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.133      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.81       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.106         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.121         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.108       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.142      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.182         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.255         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.118         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.106         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.13       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.90       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.114         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.98       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.85       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.222.41.254       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.13.142.189        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.14.30.63         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.23.121.255        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.189.163.8        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.117.204.228      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.45.61        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.68.234       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.153      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.6        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.160       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.109       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.132       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.136       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.154      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.42       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.205       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.43          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.89        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.20        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.136       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.245       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.72        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.38       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.74       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.154      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.169         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.89        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.33        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.2        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.186      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.37       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.198      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.20       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.118      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.18       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.2        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.212       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.141      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.50       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.146      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.238      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.110         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.105      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.82       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.77       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.34       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.8         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.86       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.11          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.193         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.214.95.96        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.216       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.34       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.36          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.66       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.212         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.138         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.41       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.106      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.78       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.49        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.186         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.16          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.70       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.206      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.135         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.45       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.66       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.124       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.178      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.73        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.22       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.50          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.15.77.244        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.224.102.74       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.188.30.219       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.189.107.106      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.189.166.194      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.59.252.209       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.132.227.68        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.128.1        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.82       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.70       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.10          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.46       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.170      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.146      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.122      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.182      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.98          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.156       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.202      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.157         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.225       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.38       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.190         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.21          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.188       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.183         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.140       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.19          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.162      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.204.115.149      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.204.115.152      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.73          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.192         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.186      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.10       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.106      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.112         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.120       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.163         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.132       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.123         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.61       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.111         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.150         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.120       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.154      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.77        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.175         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.77          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.114         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.96        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.1           
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.162      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.52          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.95          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.65       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.146      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.62       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.162      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.250      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.140         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.182      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.14       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.184       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.76        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.124         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.64        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.2        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.167         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.51          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.194      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.29          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.170      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.58       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.54       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.81        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.149      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.184         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.144       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.240       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.245       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.69       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.242         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.117      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.134         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.142         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.57       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.226      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.49        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.126      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.217       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.168         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.18       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.158      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.52          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.54       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.102      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.122      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.56          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.196         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.165         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.118         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.110      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.58          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.102      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.184       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.226      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.153      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.118      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.110      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.124       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.57       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.137         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.6        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.107         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.157         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.166      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.26       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.185         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.213       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.206      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.244       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.106      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.138      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.116         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.108       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.218      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.158      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.172       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.87          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.102      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.247         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.94       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.150      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.192       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.28       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.58       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.177         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.47          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.121         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.209       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.112       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.127         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.60        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.66       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.32       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.193       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.187         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.93        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.22       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.175         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.46          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.117         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.119         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.150         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.246      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.40       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.140       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.143         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.15          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.238      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.254      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.142      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.27          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.112         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.30       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.145         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.230      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.234      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.205         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.144         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.17          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.30       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.166         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.22          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.46       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.246      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.149       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.44          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.103         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.152         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.171         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.126         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.177       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.22       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.253         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.186      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.128       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.54       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.144       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.213       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.63          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.124       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.168         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.41        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.167         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.100       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.140         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.142         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.248         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.174      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.161      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.50       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.41        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.137       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.12       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.94       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.172       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.148       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.224         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.98       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.94       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.159         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.18          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.151         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.212         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.115         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.208.30       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.130      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.180         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.105         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.127         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.22       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.140.173      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.142      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.204         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.209       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.42       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.231         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.116         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.242      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.136         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.128         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.16          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.48          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.46.101       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.161      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.22       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.210      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.214      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.190         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.107         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.243         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.36          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.178         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.209.6        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.30       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.176         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.200         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.126      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.40          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.254         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.178      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.43          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.118      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.53        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.236       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.13          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.214      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.182      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.126         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.6        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.14          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.188         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.234      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.243         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.21       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.31          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.190      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.66          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.152         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.214      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.110      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.78       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.70       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.222         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.125         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.77       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.28          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.246         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.26       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.179         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.171.254      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.14       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.219         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.2        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.196       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.68        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.34          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.181         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.194         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.187         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.122         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.56        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.206         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.88          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.218         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.139.196         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.217         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.136.154         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.145         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.168.5        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.75.100       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.126      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.137.142         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.72.205       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.135.124         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.51          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.47.172       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.170.242      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.134.139         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.5.138.134         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.219.169.90       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            54.197.55.215       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.22.33.125        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.206.78.147       
+   15  3375 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            10.189.126.7        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.214.95.68        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.214.95.81        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.223.81.154       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.189.133.34       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.134.66.156        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.58.191.188       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.15.117.80        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.221.139.155      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.216.137.129      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.131.213.71        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.219.28.18        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.22.83.63         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            2.23.142.30         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.58.157.20        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            23.58.157.16        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            52.22.84.9          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            13.95.171.183       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            45.60.32.80         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            216.239.35.12       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            216.239.35.0        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            216.239.35.8        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            216.239.35.4        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            20.73.225.111       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            10.187.104.92       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.141.114.155       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.15.95.39          
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.20.185.177        
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.118.224.254      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.190.146.157      
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.17.91.214         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            3.21.211.94         
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            18.188.229.81       
+    0     0 LOG_AND_DROP  all  --  eth0   rmnet_data1  0.0.0.0/0            10.187.104.25       
+ 2927  176K ACCEPT     all  --  eth0   rmnet_data1  192.168.2.36         0.0.0.0/0           
+ 6277  388K ACCEPT     all  --  eth0   rmnet_data2  0.0.0.0/0            0.0.0.0/0           
+  350 21023 ACCEPT     all  --  eth0   rmnet_data0  0.0.0.0/0            0.0.0.0/0           
+
+Chain connman-INPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain connman-OUTPUT (1 references)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.22.84.9           tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            45.60.32.80          tcp dpt:9031
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            45.60.32.80          tcp dpt:443
+   10   600 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.118          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.158       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.142       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.140          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.111          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.72         tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.77        tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.36           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            216.239.35.8         tcp dpt:123
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            216.239.35.0         tcp dpt:123
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            216.239.35.4         tcp dpt:123
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            216.239.35.12        tcp dpt:123
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.167          tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.38        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.206          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.193          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.226       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.243          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.74        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.165       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            20.73.225.111        tcp dpt:443
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.14           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.243          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.242       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.57        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.116          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.166          tcp dpt:80
+   15   900 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.142          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.138       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.129        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.190          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.116          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.116        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.124          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.150       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.212.249.148       tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.212.249.154       tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            13.95.171.183        tcp dpt:8443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.165          tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.224          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.33         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.186       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.208.2         tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.125          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.42        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.22.83.63          tcp dpt:443
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.253          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.242          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.187          tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.217          tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.182          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.22        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.145          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.212.251.196       tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.212.251.211       tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.212.251.212       tcp dpt:443
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.254          tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.255          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.58           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.21           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.114          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.22        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.175          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.103          tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.187          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.120        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.190       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.177       tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.157          tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.154          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.188        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.219          tcp dpt:80
+   14   840 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.139          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.38        tcp dpt:80
+   15   900 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.134          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.158       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.120        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.222          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.173          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.88           tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.177          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.27           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.26        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.178       tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.190       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.132        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.184        tcp dpt:80
+    8   480 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.29           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.127          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.190       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.95           tcp dpt:80
+   16   960 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.180          tcp dpt:80
+   18  1080 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.171          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.204          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.150          tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.177          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.157       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.135          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.16           tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.14           tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.171          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.74        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.64           tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.34        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.112          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.93         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.140          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.82        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.15           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.164        tcp dpt:80
+   10   600 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.105          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.104        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.22           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.97        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.180          tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.151          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.18           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.64         tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.58        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.14        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.133       tcp dpt:80
+   16   960 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.41           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.166       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.51           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.46           tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.48           tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.168          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.30        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.179          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.37        tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.136          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.1         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.246          tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.218          tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.248          tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.70        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.152        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.50        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.84         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.124        tcp dpt:80
+   12   720 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.106          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.124          tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.143          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.168          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.189        tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.87           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.40         tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.44           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.114       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.43           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.156          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.107          tcp dpt:80
+    8   480 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.202       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.82        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.2         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.149       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.162       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.108        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.17           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.106       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.254       tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.93         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.137          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.202       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.214       tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.89         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.13        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.182       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.2            tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.118          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.122          tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.175          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.136          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.212          tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.32        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.77         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.10        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.63           tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.50           tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.142       tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.34           tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.174       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.88         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.70        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.146       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.167          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.81         tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.47           tcp dpt:80
+   11   660 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.128          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.198       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.19           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.142          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.208.6         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.160        tcp dpt:80
+    5   300 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.188          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.228        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.43           tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.122       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.186       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.154       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.185          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.122       tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.63           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.254       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.38        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.250       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.190          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.10        tcp dpt:80
+    8   480 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.112          tcp dpt:80
+    5   300 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.1            tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.118       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.196          tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.182       tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.51           tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.206       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.10        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.167          tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.145          tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.145        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.178       tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.221          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.142          tcp dpt:80
+    5   300 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.178          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.230       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.36           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.213        tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.247          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.101          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.196        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.77           tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.54        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.28         tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.210       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.80         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.53        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.238       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.5         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.40           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.114          tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.66           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.132        tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.94        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.6         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.159          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.4            tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.208.14        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.106          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.164        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.154       tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.52           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.115          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.176          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.205        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.50        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.222       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.182       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.241        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.102       tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.114       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.245        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.126          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.121       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.105        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.170       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.73           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.128        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.144          tcp dpt:80
+   10   600 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.186          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.37         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.206       tcp dpt:80
+   12   720 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.90        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.119          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.6         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.62        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.39           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.222       tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.230       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.224        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.13           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.169       tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.170       tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.220        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.125          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.52           tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.90        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.13         tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.201          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.150          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.18        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.134          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.156        tcp dpt:80
+    5   300 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.46        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.8          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.33         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.16         tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.58        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.16           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.34        tcp dpt:80
+    0     0 ACCEPT     udp  --  *      rmnet_data0  0.0.0.0/0            10.187.32.114        udp dpt:53
+    0     0 ACCEPT     tcp  --  *      rmnet_data0  0.0.0.0/0            10.187.32.114        tcp dpt:53
+    0     0 ACCEPT     udp  --  *      rmnet_data0  0.0.0.0/0            10.187.48.114        udp dpt:53
+    0     0 ACCEPT     tcp  --  *      rmnet_data0  0.0.0.0/0            10.187.48.114        tcp dpt:53
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            10.187.104.25        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.134.129.43         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.224.216.18        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.117.65.238        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.15.73.114          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            13.58.121.163        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.135.160.176        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.128.185.182        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.130.20.49          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            10.189.126.7         tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.19.133.74          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.140.35.106         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.191.58.33         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.131.19.131         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.190.128.131       tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.131.161.26         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.19.18.103          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            13.59.107.147        tcp dpt:8883
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.113       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.194       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.140        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.78        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.133.180.209        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.120        tcp dpt:80
+   11   660 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.2         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.134       tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.138          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.86        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.162       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.6         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.169          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.166       tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.54        tcp dpt:80
+    7   420 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.56           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.70        tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.210.6         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.50        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.198       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.18        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.22.255.136         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.140.25.223         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.219.174.219       tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.223.199.24        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.191.54.29         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            13.58.43.192         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.116.176.107       tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.128.5.152          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.53         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.1          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.45        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.189       tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.194          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.162       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.242       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.205.107.22        tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.98        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.218       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.74        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.156        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.154       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.78        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.89        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.183          tcp dpt:80
+   10   600 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.210.2         tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.13         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.129       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.46.17.64          tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.46.17.67          tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.89         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.136        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.64         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.98           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.118       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.8         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.12.42.197          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.21.130.135         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.221.15.191        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.119.75.246        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            13.59.217.166        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.146.121.30         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.189.200.165       tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.134.19.78          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.11           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.157          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.90        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.146       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.208.22        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.136        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.69        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.134       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.205          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.30        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.227          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.109       tcp dpt:80
+   17  1020 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.181          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.250       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.138       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.121          tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.110       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.208.10        tcp dpt:80
+    6   360 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.196        tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.193        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.226       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.66        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.112        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.56         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.24         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.184        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.192          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.34        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.244        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.222       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.141       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.2         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.226       tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.130       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.234       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.121          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.127          tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.174       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.145       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.196          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.66        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.26        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.161       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.54        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.101        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.26        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.138.184          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.194       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.230       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.216        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.212        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.12         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.133        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.181       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.210       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.140        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.81         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.98        tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.152          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.149        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.126       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.146.97.30          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            13.59.147.24         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.223.7.46          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.116.233.40        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.190.46.25         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.116.133.225       tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.14.55.183          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.22.252.82          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.202       tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.172        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.84         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.153       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.150       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.53        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.126       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.61        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.170       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.140          tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.152        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.78        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.172        tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.110       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.93        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.148        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.94        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.177        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.12        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.86        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.158       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.238       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.85        tcp dpt:80
+    3   180 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.232        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.16        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.32         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.104        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.176        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.208.26        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.210       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.92         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.205        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.126          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.69        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.172        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.254       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.36        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.85         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.42        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.41         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.82        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.94        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.204        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.12           tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.150          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.62        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.135.28           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.73         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.110       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.113        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.0         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.61        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.25        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.209        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.112        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.234       tcp dpt:80
+    1    60 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.77         tcp dpt:80
+    4   240 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.150       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.6         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.192        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.134.152          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.80         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.137.200          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.160        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.22        tcp dpt:80
+    2   120 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.152        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.240        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.250       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.62        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.238       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.42        tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.241        tcp dpt:80
+    8   480 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.130       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.53         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.221        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.114       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.185        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.60         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.222.79.32         tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.222.79.8          tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.209.22        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.186       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.10           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.197        tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.206       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.19.146.186         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.16.226.244         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.220.201.92        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.12.26.192          tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.18.252.150         tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.141.225.146        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.189.206.116       tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.14.43.31           tcp dpt:8883
+   10   600 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.9          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.163          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.46        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.121        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.5          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.126       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.134       tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.212          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.31           tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.171.14        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.246       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.89        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.124        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.148        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.168.49        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.72.168        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.66        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.116        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.139.107          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.168        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.18        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.58        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.144        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.221        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.101       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.96         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.14        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.140.20        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            18.218.200.63        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.130.143.169        tcp dpt:8883
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.205.104.132       tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            23.205.104.153       tcp dpt:443
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.75.5          tcp dpt:80
+    9   540 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.47.88         tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.130       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.46.4          tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.170.142       tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            52.219.169.98        tcp dpt:80
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            3.5.136.110          tcp dpt:80
