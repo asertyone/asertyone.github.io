@@ -1,0 +1,11 @@
+# docker run
+sudo docker run -it -v ~/docker_vol:/docker_vol --name gtest_server  gtest_docker /bin/bash
+
+#
+sudo docker start gtest_server
+
+# non-root
+sudo docker exec -w /docker_vol -it gtest_server bash
+
+# root
+sudo docker exec -u 0 -w /docker_vol -it gtest_server bash
