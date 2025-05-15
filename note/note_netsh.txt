@@ -1,0 +1,26 @@
+* netsh interface ipv4 show interfaces
+
+顯示所有 IPv4 網路介面的清單及其資訊，包括：
+接口索引（Idx）
+狀態（已連線 / 中斷）
+MTU
+
+
+Idx     Met         MTU          狀態                 名稱
+---  ----------  ----------  ------------  ---------------------------
+  1          75  4294967295  connected     Loopback Pseudo-Interface 1
+ 23          25        1500  connected     乙太網路
+ 34          25       10240  disconnected  行動電話 3
+ 15          25        1500  connected     乙太網路 2
+ 25          35        1500  connected     VMware Network Adapter VMnet1
+ 22          35        1500  connected     VMware Network Adapter VMnet8
+
+
+* netsh -c "interface ipv4" add neighbors 15 "192.168.161.35" "00-11-22-33-44-55"
+
+用途：
+在介面索引為 15 的網卡上，新增一條靜態 ARP（鄰居）條目：
+15: 網路介面的 ID（從前面指令中得來）
+192.168.161.35: 對應的 IP 位址
+00-11-22-33-44-55: 對應的 MAC 位址（需使用連字號格式）
+
