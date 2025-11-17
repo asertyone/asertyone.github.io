@@ -10,3 +10,12 @@ lsblk -o NAME,FSTYPE,MOUNTPOINT,SIZE,RO
 ------------------------------------
 bitbake -c cleanall scatter
 bitbake scatter
+
+------------------------------------
+
+Overlay command:
+
+adb shell mkdir -p /tmp/overlay/upper1
+adb shell mkdir -p /tmp/overlay/work1
+adb shell mount overlay -t overlay -o lowerdir=/lib/systemd/system,upperdir=/tmp/overlay/upper1,workdir=/tmp/overlay/work1 /lib/systemd/system
+
