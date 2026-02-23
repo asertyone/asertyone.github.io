@@ -1,3 +1,23 @@
+
+gdb-multiarch \
+    -ex "set solib-absolute-prefix /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/" \
+    -ex "set solib-search-path /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/usr/lib/" \
+    -c ./core \
+    /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/mnt/application-sw/wifimgr/bin/wifimgr
+
+-----------------------------
+
+export SDK_PATH="/home/albert/src/sdk/SDK_RTCU_MASTER_26PI01-03-0008_DEV"
+SYSROOT="$SDK_PATH/bin/sysroots/aarch64-oe-linux"
+BINARY="$SYSROOT/mnt/application-sw/conmgr/bin/conmgr"
+gdb-multiarch \
+    -ex "set solib-absolute-prefix $SYSROOT" \
+    -ex "set solib-search-path $SYSROOT/usr/lib/" \
+    -c ./core \
+    $BINARY
+
+
+-----------------------------
 gdb-multiarch
 file ./SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/mnt/application-sw/wifimgr/bin/wifimgr
 file /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/mnt/application-sw/wifimgr/bin/wifimgr
@@ -7,19 +27,3 @@ add-auto-load-safe-path ./SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch
 add-auto-load-safe-path /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/usr/lib/
 core /home/albert/src/sdk/core
 
-------- Use the below command -------
-
-gdb-multiarch \
-    -ex "set solib-absolute-prefix /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/" \
-    -ex "set solib-search-path /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/usr/lib/" \
-    -c ./core \
-    /home/albert/src/sdk/SDK_RTCU_MASTER_25PI04-05-0010_DEV/bin/sysroots/aarch64-oe-linux/mnt/application-sw/wifimgr/bin/wifimgr
------------------------------
-export SDK_PATH="/home/albert/src/sdk/SDK_RTCU_MASTER_26PI01-03-0008_DEV"
-SYSROOT="$SDK_PATH/bin/sysroots/aarch64-oe-linux"
-BINARY="$SYSROOT/mnt/application-sw/conmgr/bin/conmgr"
-gdb-multiarch \
-    -ex "set solib-absolute-prefix $SYSROOT" \
-    -ex "set solib-search-path $SYSROOT/usr/lib/" \
-    -c ./core \
-    $BINARY
