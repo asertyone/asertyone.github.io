@@ -6,7 +6,7 @@ import sys
 import tty
 import termios
 import subprocess
-import re
+import json
 
 # ================= 配置資訊 =================
 USER = "SD47606"
@@ -14,194 +14,179 @@ TOKEN = "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"
 DOMAIN = "github.psa-cloud.com"
 AUTH = f"{USER}:{TOKEN}@{DOMAIN}"
 
-REPO_MAP = [
-    ("cm", "spx03/stla.rtcu.connection-manager"),
-    ("mc", "spx03/stla.rtcu.meta-services"),
-    ("bp", "spx03/stla.rtcu.build-plan"),
-    ("28mani", "spx28/manifest"),
-    ("28maniw", "spx28/manifest.wiki"),
-    ("28msc", "spx28/stla.rtcu.meta-stla-common"),
-    ("28mcmj", "spx28/jn.rtcu.sa525m-meta-layers-meta-customizations-meta-jn"),
-    ("28ajet", "spx28/jn.rtcu.src-app-jn-ethernet-test"),
-    ("28jer", "spx28/jn.rtcu.src-system-jn-extra-rootfs"),
-    ("28jcs", "spx28/jn.rtcu.src-service-jn-config-service"),
-    ("28mj", "spx28/jn.rtcu.meta-joynext"),
-]
+# 自動獲取腳本所在資料夾，確保 repos.json 在任何地方執行都找得到
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+JSON_FILE = os.path.join(BASE_DIR, "repos.json")
 
-# ANSI 顏色與控制碼
-CLR_RESET    = "\033[0m"
-CLR_BOLD     = "\033[1m"
-CLR_CYAN     = "\033[36m"
-CLR_GREEN    = "\033[32m"
-CLR_RED      = "\033[31m"
-CLR_YELLOW   = "\033[33m"
-CLR_BLUE_BG  = "\033[44m\033[37m"
-HIDE_CURSOR  = "\033[?25l"
-SHOW_CURSOR  = "\033[?25h"
-CLEAR_SCREEN = "\033[H\033[2J"
+# 顏色配置
+CLR_RESET  = "\033[0m"
+CLR_BOLD   = "\033[1m"
+CLR_CYAN   = "\033[36m"
+CLR_GREEN  = "\033[32m"
+CLR_YELLOW = "\033[33m"
+CLR_BLUE_BG = "\033[44m"
 
 # ================= 工具函式 =================
 
-def visual_len(s):
-    """計算視覺寬度，忽略 ANSI 顏色代碼並處理全形字元"""
-    ansi_escape = re.compile(r'\x1b\[[0-9;]*m')
-    plain_text = ansi_escape.sub('', s)
-    width = 0
-    for char in plain_text:
-        width += 2 if ord(char) > 127 else 1
-    return width
-
-def pad_space(s, target_width):
-    """基於視覺寬度補足空格以確保對齊"""
-    return s + " " * (target_width - visual_len(s))
+def load_repo_data():
+    if not os.path.exists(JSON_FILE):
+        return []
+    try:
+        with open(JSON_FILE, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            # 格式: (顯示別名, 完整路徑, 組織)
+            return [(r['name'].replace('stla.rtcu.', ''), 
+                     f"{r['owner']['login']}/{r['name']}", 
+                     r['owner']['login']) for r in data]
+    except:
+        return []
 
 def getch():
-    """讀取單個按鍵，包含 ESC 序列"""
+    """強化版讀取：支援方向鍵、PageUp/Down (序列長度可達 4)"""
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
-        tty.setraw(sys.stdin.fileno())
+        tty.setraw(fd)
         ch = sys.stdin.read(1)
         if ch == '\x1b':
-            ch += sys.stdin.read(2)
+            # 嘗試讀取接下來的字元 (如 [5~, [A)
+            extra = sys.stdin.read(2)
+            ch += extra
+            if extra in ('[5', '[6'): # PageUp/Down 需要多讀一位 (~)
+                ch += sys.stdin.read(1)
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
-# ================= 互動選單邏輯 =================
+# ================= 選單邏輯 =================
 
-def show_menu():
-    selected_indices = set()
+def show_menu(all_repos):
+    PAGE_SIZE = 30
     current_idx = 0
-    num_repos = len(REPO_MAP)
+    query = ""
+    selected_paths = set()
 
-    sys.stdout.write(HIDE_CURSOR)
-    try:
-        while True:
-            # 準備畫面內容
-            output = [CLEAR_SCREEN]
-            output.append(f"{CLR_BOLD}{CLR_CYAN}🚀 PSA STLA.RTCU Repo Manager{CLR_RESET}")
-            output.append(f"方向鍵 [{CLR_BOLD}↑/↓{CLR_RESET}] 移動 | 選取 [{CLR_BOLD}Space{CLR_RESET}] | 執行 [{CLR_BOLD}Enter{CLR_RESET}] | 退出 [{CLR_BOLD}q/Esc{CLR_RESET}]")
-            output.append("─" * 75)
+    while True:
+        # 1. 根據搜尋字串過濾結果
+        filtered = [r for r in all_repos if query.lower() in r[1].lower()]
+        num_total = len(filtered)
+        if num_total > 0:
+            current_idx = max(0, min(current_idx, num_total - 1))
+        
+        # 2. 計算分頁
+        num_pages = (num_total - 1) // PAGE_SIZE + 1 if num_total > 0 else 1
+        current_page = (current_idx // PAGE_SIZE) + 1
 
-            for i, (alias, path) in enumerate(REPO_MAP):
-                is_selected = i in selected_indices
-                is_current = i == current_idx
-                
-                # 勾選框樣式
-                mark = "◉" if is_selected else "◯"
-                colored_mark = f"{CLR_GREEN}{mark}{CLR_RESET}" if is_selected else mark
-                
-                # 內容對齊處理
-                alias_txt = pad_space(alias, 12)
-                path_txt  = pad_space(path, 45)
+        # 3. 渲染畫面
+        os.system('clear')
+        print(f"{CLR_BOLD}{CLR_CYAN}🚀 PSA Repo Manager{CLR_RESET} | 總計: {num_total}")
+        print(f"🔎 搜尋: {CLR_YELLOW}{query}{CLR_RESET}_")
+        print(f"分頁: {current_page} / {num_pages} (PgUp/PgDn 跳頁)")
+        print("-" * 85)
 
-                if is_current:
-                    # 當前指向行 (藍底白字)
-                    line = f"{CLR_BLUE_BG} ❯ {colored_mark} {alias_txt} | {path_txt} {CLR_RESET}"
-                else:
-                    # 普通行
-                    line = f"   {colored_mark} {alias_txt} | {path_txt}"
-                
-                output.append(line)
+        start = (current_idx // PAGE_SIZE) * PAGE_SIZE
+        display_list = filtered[start : start + PAGE_SIZE]
 
-            output.append("─" * 75)
-            output.append(f"已勾選: {CLR_BOLD}{len(selected_indices)}{CLR_RESET} 個項目")
+        for i, (name, path, org) in enumerate(display_list):
+            real_idx = start + i
+            is_curr = (real_idx == current_idx)
+            is_sel = path in selected_paths
             
-            sys.stdout.write("\n".join(output) + "\n")
-            sys.stdout.flush()
+            mark = "[V]" if is_sel else "[ ]"
+            pointer = ">" if is_curr else " "
+            line = f"{pointer} {mark} [{org:^5}] {name[:30]:<30} | {path}"
+            
+            if is_curr:
+                print(f"{CLR_BLUE_BG}{line}{CLR_RESET}")
+            else:
+                print(line)
 
-            # 按鍵監聽
-            key = getch()
-            if key == '\x1b[A':   # Up
-                current_idx = (current_idx - 1) % num_repos
-            elif key == '\x1b[B': # Down
-                current_idx = (current_idx + 1) % num_repos
-            elif key == ' ':      # Space
-                if current_idx in selected_indices:
-                    selected_indices.remove(current_idx)
-                else:
-                    selected_indices.add(current_idx)
-            elif key == '\r':     # Enter
-                if not selected_indices:
-                    selected_indices.add(current_idx) # 若沒選則執行當前那一項
-                return list(selected_indices)
-            elif key in ('q', '\x1b', 'Q'): # Quit
+        print("-" * 85)
+        # 提示動態變更
+        nav_hint = "[j/k/q/a/c]導航" if not query else "打字搜尋中"
+        print(f"已選: {len(selected_paths)} | {nav_hint} | [Space]勾選 [Enter]執行")
+
+        # 4. 按鍵監聽
+        key = getch()
+        
+        # --- 第一層：系統級強效鍵 (不論是否在搜尋模式都生效) ---
+        if key == '\x1b[A': # 方向鍵 上
+            if num_total > 0: current_idx = (current_idx - 1) % num_total
+        elif key == '\x1b[B': # 方向鍵 下
+            if num_total > 0: current_idx = (current_idx + 1) % num_total
+        elif key in ('\x1b[6~', ']', '\x1b[C'): # PgDn, ], 右
+            if num_total > 0: current_idx = min(num_total - 1, current_idx + PAGE_SIZE)
+        elif key in ('\x1b[5~', '[', '\x1b[D'): # PgUp, [, 左
+            if num_total > 0: current_idx = max(0, current_idx - PAGE_SIZE)
+        elif key == '\r': # Enter
+            if not selected_paths and num_total > 0:
+                selected_paths.add(filtered[current_idx][1])
+            return list(selected_paths)
+        elif key == ' ': # Space
+            if num_total > 0:
+                p = filtered[current_idx][1]
+                if p in selected_paths: selected_paths.remove(p)
+                else: selected_paths.add(p)
+        elif key == '\x1b': # Esc 強制退出
+            return None
+
+        # --- 第二層：搜尋敏感快捷鍵 (只有 query 為空時生效) ---
+        elif not query:
+            k = key.lower()
+            if k == 'j': # 下
+                if num_total > 0: current_idx = (current_idx + 1) % num_total
+            elif k == 'k': # 上
+                if num_total > 0: current_idx = (current_idx - 1) % num_total
+            elif k == 'q': # 退出
                 return None
-    finally:
-        sys.stdout.write(SHOW_CURSOR)
+            elif k == 'a': # 全選 (僅限目前過濾出的結果)
+                for r in filtered: selected_paths.add(r[1])
+            elif k == 'c': # 清除所有勾選
+                selected_paths.clear()
+            elif k == 'g': # 回到最頂端
+                current_idx = 0
 
-# ================= 核心執行邏輯 =================
+        # --- 第三層：搜尋打字邏輯 ---
+        if key in ('\x7f', '\x08'): # Backspace
+            query = query[:-1]
+            current_idx = 0
+        elif len(key) == 1 and key.isprintable():
+            # 只有當 key 不是被上方攔截的功能鍵時，才加入搜尋
+            # 這裡簡單處理：只要進入到這層的單字元都視為搜尋輸入
+            query += key
+            current_idx = 0
 
-def run_git_task(selected_names):
-    """執行智慧型 Clone 或 Pull"""
-    print(f"\n{CLR_BOLD}❇️  正在啟動任務處理流程...{CLR_RESET}")
-    
-    for alias in selected_names:
-        match = next((item for item in REPO_MAP if item[0] == alias), None)
-        if not match:
-            continue
-            
-        path = match[1]
-        repo_name = path.split('/')[-1] # 從路徑提取目錄名
-        url = f"https://{AUTH}/{path}.git"
-        
-        print(f"\n─── {CLR_BOLD}[{alias}]{CLR_RESET} ──────────────────────────")
-        
-        # 檢查目錄是否存在
+# ================= 任務執行 =================
+
+def run_git_task(paths):
+    print(f"\n{CLR_BOLD}❇️  正在執行 Git 任務...{CLR_RESET}")
+    for p in paths:
+        repo_name = p.split('/')[-1]
+        url = f"https://{AUTH}/{p}.git"
+        print(f"\n─── [ {repo_name} ] ──────────────────────────────────────────")
         if os.path.exists(repo_name):
-            print(f"🚩 資料夾 {CLR_YELLOW}{repo_name}{CLR_RESET} 已存在。")
-            print(f"🔄 執行 {CLR_CYAN}git pull{CLR_RESET} 更新代碼...")
-            try:
-                # -C 參數讓 git 直接在目標目錄執行
-                subprocess.run(["git", "-C", repo_name, "pull"], check=True)
-                print(f"✅ 更新完成。")
-            except subprocess.CalledProcessError:
-                print(f"{CLR_RED}❌ 更新失敗，請檢查手動衝突或網路狀態。{CLR_RESET}")
+            print(f"🔄 執行 git pull...")
+            subprocess.run(["git", "-C", repo_name, "pull"])
         else:
-            print(f"🚚 執行 {CLR_GREEN}git clone{CLR_RESET} 下載儲存庫...")
-            try:
-                subprocess.run(["git", "clone", url], check=True)
-                print(f"✅ 複製完成。")
-            except subprocess.CalledProcessError:
-                print(f"{CLR_RED}❌ 複製失敗，請檢查 Token 權限或 URL。{CLR_RESET}")
-
-    print(f"\n{CLR_BOLD}✨ 當前批次任務已結束。{CLR_RESET}")
-
-# ================= 主程式 =================
+            print(f"🚚 執行 git clone...")
+            subprocess.run(["git", "clone", url])
 
 def main():
-    # 支援指令列直接呼叫 (e.g., ./git_clone.py cm mc)
-    if len(sys.argv) > 1:
-        args = sys.argv[1:]
-        if "all" in args:
-            targets = [r[0] for r in REPO_MAP]
-        else:
-            targets = args
-        run_git_task(targets)
+    data = load_repo_data()
+    if not data:
+        print(f"{CLR_RED}❌ 找不到 {JSON_FILE}{CLR_RESET}")
+        print("請先執行 PowerShell 腳本產出 repos.json")
         return
 
-    # 進入互動式循環模式
     while True:
-        selected_idxs = show_menu()
-        
-        # 退出判斷
-        if selected_idxs is None:
-            print(f"\n{CLR_BOLD}👋 程式結束，祝你開發順利！{CLR_RESET}\n")
+        res = show_menu(data)
+        if res is None:
+            print("\n已退出程式。")
             break
-            
-        # 轉換索引為別名
-        target_names = [REPO_MAP[i][0] for i in selected_idxs]
         
-        # 執行任務
-        run_git_task(target_names)
-        
-        # 停留讓使用者確認結果
-        print(f"\n{CLR_CYAN}按任意鍵回到選單...{CLR_RESET}")
+        run_git_task(res)
+        print(f"\n{CLR_CYAN}任務完成！按任意鍵返回選單...{CLR_RESET}")
         getch()
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        sys.stdout.write(SHOW_CURSOR + "\n\n⚠️  已由使用者強制中斷。\n")
+    main()
