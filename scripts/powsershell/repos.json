@@ -1,0 +1,5858 @@
+[
+  {
+    "description": "To be used to store scripts needed to run builds in CI/CD",
+    "name": "stla.rtcu.cicd-build-scripts",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.test-automation",
+    "name": "stla.rtcu.test-automation",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.build-plan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repository is used to maintain storage Manager for management of persistent key-value data for RTCU",
+    "name": "stla.rtcu.storage.manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.connection-manager",
+    "name": "stla.rtcu.connection-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to store the Binary Object Manager module that handle the reception and forward of binary objects",
+    "name": "stla.rtcu.BinaryObjectManager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.vectorsomeip-consumer implements consumer part of SOME/IP Services interfaces available in STLA-B Vehicle Network using Vector SOME/IP stack as libraries",
+    "name": "stla.rtcu.vector-someip-consumer",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.fota",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repository is used to maintain the unified implementation required to support both FOTA and AOTA updates within the Brain Architecture.",
+    "name": "stla.rtcu.libotamanager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.FotaDeltaPkgGenConfig",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkRemoteAccess",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkTCUInfo",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.release-plan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo will host the vector some/ip interfaces to route the Connectivity status info over Ethernet.",
+    "name": "stla.rtcu.libCCVectorSomeIP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "automation scripts used for automated testing to improve productivity",
+    "name": "stla.rtcu.TestAutomation",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Broadcast Manger provides IVI with interface to communicate with tuner",
+    "name": "stla.rtcu.broadcast-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo that has logic that will check for ECU Identity certificate availability during startup",
+    "name": "stla.rtcu.ecuidentity",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.meta-services",
+    "name": "stla.rtcu.meta-services",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.libposmgr-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.mqtt-watchdog",
+    "name": "stla.rtcu.mqtt-watchdog",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.shm-library",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to manage the Vector SOME/IP interfaces related implementation for FOTA Mgr in RTCU",
+    "name": "stla.rtcu.FOTAMgrVectorSomeIP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.libwifimgr-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Wi-Fi Manger provides IVI with interface to communicate with Wi-Fi Hardware",
+    "name": "stla.rtcu.wifi-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repo will be used to integrate COSMOS deliverables for RTCU",
+    "name": "stla.rtcu.cosmos",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "rtcu.build-verification-tests",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to store root CA and sub-CAs for STLA PKI tree, as per build type and region",
+    "name": "stla.rtcu.root-sub-ca",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkLwm2m",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Positioning  Manger provides converted positing date to IVI",
+    "name": "stla.rtcu.positioning-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkLifecycle",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-connected-apps",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkXcall",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repos to hold CRL certificates and to manage the TLS connections.",
+    "name": "stla.rtcu.TLSManager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.wrapper-consumer",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AOTAManager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Native service to manage and update system time",
+    "name": "stla.rtcu.time-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "ADA macchina component implementation",
+    "name": "stla.rtcu.all-data-app-macchina",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "as ADA dev team needed, we need to created a new repository in SPX03 for adding the AICAS VM and ADA App",
+    "name": "stla.rtcu.all-data-app",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkMqtt",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to manage the DM Persistence source code and access need to MD and STLA teams",
+    "name": "stla.rtcu.AppFwkDMPersistence",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkPositioning",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Description: Mirror repo for https://github.intra.fcagroup.com/FOTA/COSMOS_ONBOARD",
+    "name": "stla.rtcu.cosmos.onboard",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "We are going to do R2EX Project component validation test automation in a new repository",
+    "name": "STLA.R2EX.Test-Automation",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.vectorsomeip-provider implements provider part of SOME/IP Services interfaces available in STLA-B Vehicle Network using Vector SOME/IP stack as libraries",
+    "name": "stla.rtcu.vector-someip-provider",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.wrapper-provider",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkCellular",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkDiagnosis",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Tools needed to sign images, sign AOTA apps, fota, PKI interface",
+    "name": "stla.rtcu.signature-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "vector someip Interface for time manager,RTCU is a consumer. Time values to be received periodically on every 250ms",
+    "name": "stla.rtcu.libtimemgr-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.unit-test-env",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "To keep the UT docker environment",
+    "name": "stla.rtcu.ut.docker",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repo will be used to develop EMP protocol for TCP/IP network supervision",
+    "name": "stla.rtcu.emp-tcpip-supv",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "SOMEIP related implementation for Broadcast manager",
+    "name": "stla.rtcu.libBroadcastmgr-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.authcodelib-atlhigh",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "3rd party application manager",
+    "name": "stla.rtcu.app-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.appfwk-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.keepalivemgmet",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Purpose: to store part number data",
+    "name": "stla.rtcu.part-numbers",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.SecureStorage",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Syspat component is used for system resource monitoring. ",
+    "name": "stla.rtcu.performance-and-analysis-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.redbend",
+    "name": "stla.rtcu.redbend",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkDataStorage",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkSupervision",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkProxi",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkCan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to store the audio prompts related files for RTCU",
+    "name": "stla.rtcu.XCallAudioPrompts",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "For CAN History service based on RTCU Macchina App Framework API definitions",
+    "name": "stla.rtcu.AppFwkCanHistory",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkActiveDiag",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkAudio",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to manage the AppFwk component for Privacy Mode in RTCU",
+    "name": "stla.rtcu.AppFwkPrivacyMode",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This is repo used to create Fota Delta with help of ocnan",
+    "name": "stla.rtcu.fota-delta",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "ai tools to support sw development activities",
+    "name": "stla.rtcu.ai-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Host the vector some/ip interfaces to route the IMU data over Ethernet.  ",
+    "name": "stla.rtcu.ImuMgr",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Host the vector some/ip interfaces to route the IMU data over Ethernet.",
+    "name": "stla.rtcu.libImuVectorSomeIP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.lwm2mWakaama",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to keep the python-based script that generates the XML file needed for DM server",
+    "name": "stla.rtcu.DM_ESCCM_XMLConfigGen",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "contain test applications for the team 1 perimeter",
+    "name": "stla.rtcu.team1-test-apps",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.privacy-mode",
+    "name": "stla.rtcu.privacy-mode",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Partitions delivered as bins by Joynext",
+    "name": "jn.conan.prop-partitions",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "To store the script file for the DAC application, dedicated repo for the DAC component",
+    "name": "stla.rtcu.dac",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "To add recipes from Vector",
+    "name": "stla.rtcu.meta-autosar",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to manage the vector someip interfaces for privacy mode in STLA B",
+    "name": "stla.rtcu.libPrivacyModeVectorSIP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repo will be used to integrate COSMOS deliverables for RTCU",
+    "name": "stla.rtcu.cosmos-",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "testing repo transfer",
+    "name": "stla.cockpit.anurag.test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Abstraction module for Spak",
+    "name": "stla.rtcu.AppFwkSpak",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Library of vector someip interfaces for GSR ISA",
+    "name": "stla.rtcu.ISAVectorSOMEIP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to store the ISA SLI module. Need to have access to MD and STLA.",
+    "name": "stla.rtcu.isa.sli",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Implementation for  AOTA vector someip",
+    "name": "stla.rtcu.libaota-vector-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkRadio",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "For XCall related vector someip interface source code",
+    "name": "stla.rtcu.XCallVectorSOMEIP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "RTCU team need these repos which is accessible to MD.",
+    "name": "stla.rtcu.macchinaNetworkManager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkWifi",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repo will be used to develop EMP protocol for TCP/IP network supervision",
+    "name": "-stla.rtcu.emp-tcpip-supv",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Stores the quality deliverables of RTCU project.",
+    "name": "stla.rtcu.quality",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "This repo will be used to maintain x86 based test app for simulating someip services provided or consumed by RTCU",
+    "name": "stla.rtcu.vector-someip-testapps",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repository for Yocto building",
+    "name": "RTCU_MACCHINA",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.one-service",
+    "name": "stla.rtcu.one-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Provide AppFWK API for RemoteSerivces",
+    "name": "stla.rtcu.remote-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to manage the macchina remote diagnostic client",
+    "name": "stla.rtcu.macchinaRDA",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Command message mechanism between bundles",
+    "name": "stla.rtcu.core",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Internal command/service handler between bundles",
+    "name": "stla.rtcu.cmd-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Library from HERE related to GSR ISA",
+    "name": "stla.rtcu.ISAHereLib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkSms",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkPersistence",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.AppFwkLogging",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repos to hold CRL certificates and to manage the TLS connections.",
+    "name": "stla.rtcu.CRLManager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.mqtt",
+    "name": "stla.rtcu.mqtt",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": " To manage the keep alive timer to maintain connection with the SSDP from RTCU",
+    "name": "stla.rtcu.keepalivemgmt",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": ": Repo to keep the various region-specific Tuner configuration",
+    "name": "stla.rtcu.TunerRegion_Config",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.xcall-manager",
+    "name": "stla.rtcu.xcall-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.vector-someip",
+    "name": "stla.rtcu.vector-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "as ADA dev team needed, we need to created a new repository in SPX03",
+    "name": "stla.rtcu.ada-macchina",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.network-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.FotaDeltaPkgGenConfig_ALT",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Repo to store the configuration script that generates the SHM memory CAN Frame handling configuration.",
+    "name": "stla.rtcu.NetworkManagerConfigGen",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "to store the shm read of CAN data for privacy mode, fota and sli",
+    "name": "stla.rtcu.multienablers",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.proxi-manager",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "to store the business logic needed for device manager native linux application that communicates over vectro someip to other ECU and uses CAPI interface to internal transaction",
+    "name": "stla.rtcu.libdmmgr-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "used to store the automated test apps and infrastructure",
+    "name": "stla.rtcu.appframework-misc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.linux-autosar-model",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Business logic of device management in native linux.",
+    "name": "stla.rtcu.DeviceManagementNL",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "APPFwk component to manage the Authentication between RTCU and BCM for RO and SVT macchina apps",
+    "name": "stla.rtcu.AppFwkBCMAuthentication",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.vsftpd",
+    "name": "stla.rtcu.vsftpd",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "someip library code maintain repo",
+    "name": "Stla.rtcu.libManualDateandTimevectorsomeip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "Stla.rtcu.ManualDateandTime",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.MqttConfig",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "STLA_RTBM_PlatformAPPSW",
+    "name": "STLA_RTBM_PlatformAPPSW",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.system-health-monitor",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.protobuf",
+    "name": "stla.rtcu.protobuf",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "STLA_RTBM_BSP",
+    "name": "STLA_RTBM_BSP",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.systemconfig",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "test_update",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.meta-stla-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.websocket-client-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "stla.rtcu.data-collection-application",
+    "name": "stla.rtcu.data-collection-application",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "RTCU_MACCHINA_CUSTOM",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "",
+    "name": "TBOX-RTCU-UBUNTU-MACCHINA",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjc5OTc=",
+      "login": "spx03"
+    }
+  },
+  {
+    "description": "Purpose: for efd scripts",
+    "name": "stla.rtcu.efd-scripts",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "stla.rtcu.api",
+    "name": "stla.rtcu.api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "STLA.RTCU.Docker_Yocto",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Content extensions to be stored : .conf. .bb, .mit etc  Software Item Description: meta layer information for STLA developed SW components which will be part of yocto build environment and final build image",
+    "name": "stla.rtcu.meta-stla-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "manifest",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "This repository is used for storing signature tools.",
+    "name": "jn.rtcu.sa525m-rwspkg",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-rws-tools-echo-server-tcp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-qti-bsp-recipes-frameworks",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-qti-bsp-recipes-blast",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-utils-sigma-dut",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-qcacld-3.0",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-qca-wifi-host-cmn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-platform",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-fw-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-rws-opensource",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-proprietary",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-tinycompress",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-tinyalsa",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-securemsm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-mvm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-crosvm-gunyah",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-bt-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-audio-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-audio-hal-primary-hal",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-arpal-lx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-agm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-joynext-proprietary",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-udpreplay",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telux-services-ril",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telux-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telematics-apps-open-source",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-tcp-splice",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-tools-aidl",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-memory-libmeminfo",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-memory-libdmabufheap",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-memory",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-extras",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-core",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-synergy-synergy-opensource",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-shortcut-fe",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-apps-proc-src-qcom-opensource-location",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-pmipv6",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "RWS alpha4 delivery",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-sample",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-rwiFramework-doctooling",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-rwiFramework-buildsys",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-trustZone-rwi-bin-rn93xx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-fwupdate-bin-rn93xx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-jansson",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-Kconfiglib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-thirdparty-plantuml-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-thirdparty-googletest",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-thirdparty-cppbdd",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-rwi-persistency",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-doctooling-rwi-template-doxygen-awesome-css",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-doctooling",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework-buildsys",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-framework",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-apps-rwi-persistency-editor",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-mdm-ss-mgr-reboot-daemon",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-mdm-ss-mgr-init-mss",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-mdm-init",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-tools-mkbootimg",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-qcom-proprietary-devicetree",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-ndk-r23",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-kernel-build-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-gcc-linux-x86-host-x86-64-linux-glibc2.17",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-clang-host-linux-x86",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-build-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-msm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-stardoc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-python-absl-py",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-dtc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-bazel-skylib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-build-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-build-bazel-common-rules",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-bootable-bootloader-edk2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-hardware-qcom-sensors",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-hardware-libhardware",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-apps-proc-src-hardware-qcom-gps",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-frameworks",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-filesystems-mtd-utils",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-wpa-supplicant-8",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-safe-iop",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-rust-crates-vmm-vhost",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-rust-crates-simplelog",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-rust-crates-android-logger",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-open-avb",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-minijail",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-crosvm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-compat-wireless",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-avb",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-device-qcom-wlan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-datarmnet-ext",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-datarmnet",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-dataipa",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-oss",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-ipa-cfg-mgr",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-eth",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-cv2x-security-aerolink-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-system-extras",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-system-core",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "for introducing new features",
+    "name": "jn.rtcu.sa525m-src-ota-streaming-system-update-engine",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-frameworks-native",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-xz-embedded",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-shflags",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-modp-b64",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-lzma",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-libevent",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-libchrome",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-libbrillo",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-bsdiff",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-external-boringssl",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-external-libdivsufsort",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-external-bsdiff",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-device-qcom-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-build",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-sa525m",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-virtualization",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-selinux",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-openembedded",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-gplv2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-clang",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-rws-prop-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-rws-products",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-rws",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-qti",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-customizations-meta-jn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-downloads",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "D84",
+    "name": "stla.rtcu.vector-sip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Repo to store CyberSecurity related scripts used at build/ run time.",
+    "name": "stla.rtcu.security-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.meta-stla-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.can-config-jsongen",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Purpose: for release SW079 Hotfix I from Joynext side",
+    "name": "jn.rtcu.idsm-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Purpose: for release SW079 Hotfix I from Joynext side",
+    "name": "jn.rtcu.idsm-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.vector-ivda",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "jn.rtcu.yocto.meta-cspp",
+    "name": "jn.rtcu.yocto.meta-cspp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.meta-amsr-vector",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.conan-img",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Conan repo for SDK",
+    "name": "stla.rtcu.conan-sdk",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "flow.tc.robotframework_RTCU_BVT",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-joynext",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "this is a test repository for using conan in rtcu for jn products ",
+    "name": "jn.conan.pkg",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "conan package repo to store peripherals binary",
+    "name": "stla.rtcu.car-access-peripherals",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Repository to deliver releases to Joynext via Conan Mechanismn",
+    "name": "stla.rtcu.jn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "tst_history",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.conan.flashing",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "To synchronize beta2-c1 baseline for compilation verification in Stellantis side",
+    "name": "jn.rtcu.sa525m-prebuilt-sa525m-oemvm-vm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-sa525m-televm-vm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-sa525m-hostvm-vm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-sa525m-fotavm-vm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.fota-report",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-imu-sensor",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-rust",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-layers-conf",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telaf",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-wdog-linux",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-simu",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-at",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-tinycbor",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-plantuml",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-pjsip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-libcbor",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-kconfig-frontends",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-iperf",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-3rdParty-ima-support-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-legato-legato-af",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-legato-3rdParty-jansson",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-legato-3rdParty-Kconfiglib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-jdk-jdk11",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-boot-artifacts",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-bazel-linux-x86-64",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-recovery",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-sa525m-2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-OTA-streaming-system-stream-update",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "Aota_build_configuration",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-open-avb-original",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-rwi-extras-sa515m-rn91xx-files-build",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "poky",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-rwi-extras",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-rwi-extras-auto-internal",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "Repo to store Firmware signing scripts to be used along with STLA PKI system access.",
+    "name": "stla.rtcu.FirmwareSigningAutomation",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-rwi",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-rws-sa525m-rn93xx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-c2c-external-json-c",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-c2c-external-eclipse-paho.mqtt.c",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-c2c-external-eclipse-mosquitto",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-fwupdate",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-downloads-3.1",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "yocto-download",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-wpa_supplicant_8",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-wlan-utils-sigma-dut",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-wlan-qcacld-3.0",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-wlan-qca-wifi-host-cmn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-wlan-fw-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-device-qcom-wlan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-telux-services-ril",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "src-telux-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "edk2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-gplv2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "meta-openembedded",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "jn.rtcu.yocto.meta-joynext-bin",
+    "name": "jn.rtcu.yocto.meta-joynext-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "To be used for version & change management of API definitions",
+    "name": "Middleware_API_Definition",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.someIp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "telux-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "ecall-ivs",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "",
+    "name": "telux-services-ril",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjgyMjY=",
+      "login": "spx05"
+    }
+  },
+  {
+    "description": "for introducing new features with respect to libvector someip",
+    "name": "jn.rtcu.src-lib-libvector-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Repo required for Sharing of MCU source code",
+    "name": "jn.rtcu.mcu-tcc7045-fw",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-diag-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.meta-joynext",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-system-jn-gmock",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-system-jn-extra-rootfs",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-system-jn-cppscan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-system-jn-buildenv",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-vehComm-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-udsupdate-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Repos are needed for JN repos for new feature 'thermal management' in X028 delivery",
+    "name": "jn.rtcu.src-service-jn-thermal-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-start-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-security-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-rmsproxy-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-rms-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-radio-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Purpose: Joynext needs to be synchronized to the SPX Server at SW081",
+    "name": "jn.rtcu.src-service-jn-positioning-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Purpose: development from Joynext side for respective",
+    "name": "jn.rtcu.src-service-jn-platformmon-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-log-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-lifecycle-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-install-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-ecall-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Purpose: development for for jn doip dispatching service",
+    "name": "jn.rtcu.src-service-jn-doipdispatching-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Joynext needs git reps for srclib, libvector",
+    "name": "jn.rtcu.src-service-jn-dm-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-config-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src.service-jn-clockmanager-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-audiomanager-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "dm service implementation",
+    "name": "jn.rtcu.srclib-libvector-dm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "variant management feature",
+    "name": "jn.rtcu.src-lib-jn-sip-lib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-secstore",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "using for tuner delivery",
+    "name": "jn.rtcu.src-lib-jn-radio-firmware",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "purpose: to pushing the source code for network libarary & Joynext mal-xtra details",
+    "name": "jn.rtcu.src-lib-jn-network-lib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-mal-positioning",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-mal-imu",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-mal",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-hal-install",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-doip-stack",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-common-lib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-combase",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-ext-asn1c",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Purpose: This repository is used for Ethernet Conformance Test",
+    "name": "jn.rtcu.src-app-jn-ethernet-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-app-jn-app-adapter-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-wifi-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-vehComm-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Repos are needed for JN repos for new feature 'thermal management' in X028 delivery",
+    "name": "jn.rtcu.src-api-jn-thermal-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-start-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-security-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-rmsproxy-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Joynext needed",
+    "name": "jn.rtcu.src-api-jn-radio-test-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-radio-firmware-update-mode-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-radio-firmware-update-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "using for tuner delivery",
+    "name": "jn.rtcu.src-api-jn-radio-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Purpose: Joynext needs to be synchronized to the SPX Server at SW081",
+    "name": "jn.rtcu.src-api-jn-positioning-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-log-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-lifecycle-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-install-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-diag-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-config-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-clockmanager-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-audiomanager-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.meta-amsr-vector",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "purpose: to pushing the source code for network libarary & Joynext mal-xtra details",
+    "name": "jn.rtcu.src-lib-jn-mal-xtra",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-positioning-config-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-gnss-config-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Purpose: development from Joynext side for respective",
+    "name": "-jn.rtcu.src-service-jn-platformmon-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-system-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-app-jn-app-positioning-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-system-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-radio-test-api-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-service-jn-testmgr-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-api-jn-testmgr-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-vo-aacenc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-libgstavtp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-libavtp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.vector-amsr",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-hal-audio",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-hal-devicemanagement",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-rws-opensource",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-joynext-proprietary",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "using for tuner delivery",
+    "name": "jn.rtcu.src-system-jn-mii",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.src-lib-jn-key",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-gcc-linux-x86-host-x86-64-linux-glibc2.17",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "using for tuner delivery",
+    "name": "jn.rtcu.src-service-jn-radio-service-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-downloads-3.1",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-apps_proc-src-hardware-qcom-gps",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-apps_proc-src-qcom-opensource-location",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-prebuilt-rws-sa525m-rn93xx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-rws-prop-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-rws-products",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-rws",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-meta-qti",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-meta-layers-layers-conf",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-virtualization",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-selinux",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-gplv2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-openembedded",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky-meta-clang",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-poky",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-boot-artifacts",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-clang-host-linux-x86",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-ndk-r23",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-tools-mkbootimg",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-jdk-jdk11",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-build-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-bazel-linux-x86_64",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-external-stardoc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-external-python-absl-py",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-external-dtc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-external-bazel-skylib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-build-bazel_common_rules",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-prebuilts-kernel-build-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-msm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-qcom-proprietary-devicetree",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-build-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-kernel-5.15-kernel_platform-bootable-bootloader-edk2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-mdm-init",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-pmipv6",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-tcp-splice",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-synergy-synergy-opensource",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telux-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-shortcut-fe",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-mvm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-frameworks",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-cv2x-security-aerolink-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-memory",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-memory-libdmabufheap",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telematics-apps-open-source",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-mdm-ss-mgr-init_mss",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-mdm-ss-mgr-reboot-daemon",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-udpreplay",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-device-qcom-wlan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-tinycompress",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-tinyalsa",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-securemsm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-arpal-lx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-datarmnet-ext",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-datarmnet",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-audio-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-agm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-proprietary",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-utils-sigma-dut",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-qcacld-3.0",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-qca-wifi-host-cmn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-platform",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-wlan-fw-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-oss",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-ipa-cfg-mgr",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-dataipa",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-data-eth",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-memory-libmeminfo",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-extras",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-system-core",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-telux-services-ril",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-hardware-qcom-sensors",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-vendor-qcom-opensource-audio-hal-primary-hal",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-hardware-libhardware",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-wpa_supplicant_8",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-safe-iop",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-minijail",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-c2c-external-json-c",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-c2c-external-eclipse-mosquitto",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-external-open-avb",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "",
+    "name": "jn.rtcu.sa525m-src-filesystems-mtd-utils",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "jn.rtcu.mcu-tcc7045-app",
+    "name": "jn.rtcu.mcu-tcc7045-app",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjk0MzM=",
+      "login": "spx12"
+    }
+  },
+  {
+    "description": "Conan repository to track RTCU images",
+    "name": "stla.rtcu.conan-img",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "NAD Manifest repository",
+    "name": "manifest",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-diag-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "Pipeline as a code for RTCU project",
+    "name": "stla.rtcu.tc-conf-mcu",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "Conan repository for tracking SDK packages",
+    "name": "stla.rtcu.conan-sdk",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-udsupdate-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-radio-firmware",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-radio-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-ecall-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.mcu-tcc7045-fw",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-audiomanager-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.idsm-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-vehComm-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.meta-stla-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.srclib-libvector-dm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-lifecycle-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-security-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "Teamcity configuration for NAD",
+    "name": "stla.rtcu.tc-conf-nad",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-dm-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-diag-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-libvector-someip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-config-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.meta-joynext",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-thermal-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-thermal-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-radio-firmware-update-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.vector-sip",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.vector-ivda",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.can-config-jsongen",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-proprietary",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.security-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-wlan-utils-sigma-dut",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-wlan-qcacld-3.0",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-wlan-qca-wifi-host-cmn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-wlan-platform",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-wlan-fw-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-rws-opensource",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-tinycompress",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-tinyalsa",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-securemsm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-mvm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-crosvm-gunyah",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-bt-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-audio-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-audio-hal-primary-hal",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-arpal-lx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-qcom-opensource-agm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-vendor-joynext-proprietary",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-udpreplay",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-telux-services-ril",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-telux-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-telematics-apps-open-source",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-tcp-splice",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-system-tools-aidl",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-system-memory-libmeminfo",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-system-memory-libdmabufheap",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-system-memory",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-system-extras",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-system-core",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-synergy-synergy-opensource",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-shortcut-fe",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-rws-tools-echo-server-tcp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-apps-proc-src-qcom-opensource-location",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-pmipv6",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-sample",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-rwiFramework-doctooling",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-rwiFramework-buildsys",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-trustZone-rwi-bin-rn93xx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-platformAdaptor-fwupdate-bin-rn93xx",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-3rdParty-jansson",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-doctooling-rwi-template-doxygen-awesome-css",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp-3rdParty-Kconfiglib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-legacyapp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-thirdparty-plantuml-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-thirdparty-googletest",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-thirdparty-cppbdd",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-rwi-persistency",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-mdm-ss-mgr-init-mss",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-doctooling",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework-buildsys",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-framework",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform-apps-rwi-persistency-editor",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-platform",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-mdm-ss-mgr-reboot-daemon",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-ndk-r23",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-mdm-init",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-clang-host-linux-x86",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-tools-mkbootimg",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-qcom-proprietary-devicetree",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-kernel-build-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-gcc-linux-x86-host-x86-64-linux-glibc2.17",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-stardoc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-prebuilts-build-tools",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-msm-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-python-absl-py",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-bazel-skylib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-external-dtc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-build-bazel-common-rules",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-build-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-kernel-5.15-kernel-platform-bootable-bootloader-edk2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-hardware-qcom-sensors",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-apps-proc-src-hardware-qcom-gps",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-hardware-libhardware",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-frameworks",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-filesystems-mtd-utils",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-wpa-supplicant-8",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-safe-iop",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-rust-crates-vmm-vhost",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-rust-crates-simplelog",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-rust-crates-android-logger",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-open-avb",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-minijail",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-crosvm",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-compat-wireless",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-external-avb",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-device-qcom-wlan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-data-eth",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-datarmnet-ext",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-datarmnet",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-dataipa",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-data-oss",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-data-ipa-cfg-mgr",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-data-kernel",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-system-extras",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-cv2x-security-aerolink-public",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-system-core",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-system-update-engine",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-frameworks-native",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-xz-embedded",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-shflags",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-modp-b64",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-lzma",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-libevent",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-libchrome",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-prebuilt-sa525m",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-libbrillo",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-bsdiff",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-streaming-external-boringssl",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-external-libdivsufsort",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-external-bsdiff",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-device-qcom-common",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-src-OTA-build",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.meta-stla-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-virtualization",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-selinux",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-qti-bsp-recipes-frameworks",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-qti-bsp-recipes-blast",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-openembedded",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-gplv2",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky-meta-clang",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-poky",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-meta-layers-meta-rws-prop-bin",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-meta-layers-meta-rws-products",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-meta-layers-meta-rws",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-meta-layers-meta-qti",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-meta-layers-meta-customizations-meta-jn",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.yocto.meta-cspp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-system-jn-gmock",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-system-jn-extra-rootfs",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.meta-amsr-vector",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-start-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-system-jn-buildenv",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-rms-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-rmsproxy-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-positioning-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-platformmon-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-log-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-install-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-doipdispatching-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src.service-jn-clockmanager-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-sip-lib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-network-lib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-secstore",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-mal-positioning",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-mal",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-hal-install",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-mal-imu",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-doip-stack",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-common-lib",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-app-jn-ethernet-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-combase",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-ext-asn1c",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-app-jn-app-adapter-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-wifi-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-vehComm-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-start-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-security-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-radio-test-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-radio-firmware-update-mode-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-positioning-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-rmsproxy-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-radio-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-rwspkg",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-log-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.sa525m-downloads",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-lifecycle-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-install-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-config-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-audiomanager-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.idsm-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-clockmanager-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-system-jn-cppscan",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "privacymode",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-jn-mal-xtra",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-system-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-libgstavtp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-vo-aacenc",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-positioning-config-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-service-jn-testmgr-service",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-lib-libavtp",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-app-jn-app-positioning-test",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-testmgr-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  },
+  {
+    "description": "",
+    "name": "stla.rtcu.src-api-jn-system-api",
+    "owner": {
+      "id": "MDEyOk9yZ2FuaXphdGlvbjE2MDk4",
+      "login": "spx28"
+    }
+  }
+]
