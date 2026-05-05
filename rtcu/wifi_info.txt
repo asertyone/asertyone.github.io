@@ -1,0 +1,15 @@
+OFF:
+"lastMode":0,
+"reqEnableMode":0,
+ 
+AP:
+"lastMode":1,
+"reqEnableMode":1,
+ 
+STA:
+"lastMode":2,
+"reqEnableMode":2,
+ 
+AP+STA:
+"lastMode":3,
+"reqEnableMode":3,
