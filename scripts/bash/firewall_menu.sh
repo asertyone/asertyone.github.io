@@ -14,7 +14,6 @@ fi
 CORE_DROP_CHAINS="TCPIP_DROP_INV_PORT_TCP TCPIP_DROP_INV_PORT_UDP TCPIP_DROP_INV_IPV4_ADDR TCPIP_DROP_INV_IPV6_ADDR"
 
 # Global temporary storage path for caching to maximize Yocto performance
-TMP_FLOW="/tmp/fw_flow.tmp"
 TMP_SAVE="/tmp/fw_save.tmp"
 
 ##############################################################################
@@ -23,42 +22,39 @@ TMP_SAVE="/tmp/fw_save.tmp"
 chain_has_drop() { iptables -S "$1" 2>/dev/null | grep -q -- "-j DROP"; }
 policy_is_drop() { iptables -S INPUT 2>/dev/null | head -n 1 | grep -q "DROP"; }
 
-# Optimized detection using high-speed local cache file instead of live iptables calls
-is_chain_bypassed_cached() {
-    grep -q "^-A $1 -j RETURN" "$TMP_SAVE" 2>/dev/null
-}
-
-chain_has_drop_cached() {
-    grep -q "^-A $1 -j DROP" "$TMP_SAVE" 2>/dev/null
-}
-
 ##############################################################################
-# Keyboard Event Listener (Supports Arrows, ENTER, V=View, Q=Quit)
+# Keyboard Event Listener (Strict Numeric Returns for Compatibility)
 ##############################################################################
 get_key() {
     local key
     read -rsn1 key
     
-    # Check for ANSI escape sequences (Arrow keys)
     if [ "$key" = $'\x1b' ]; then
         read -rsn2 -t 0.1 key
         case "$key" in
-            '[A') echo "UP"; return ;;
-            '[B') echo "DOWN"; return ;;
-            '[D') echo "LEFT"; return ;;
-            '[C') echo "RIGHT"; return ;;
+            '[A') echo "1"; return ;; # UP
+            '[B') echo "2"; return ;; # DOWN
+            '[D') echo "3"; return ;; # LEFT
+            '[C') echo "4"; return ;; # RIGHT
         esac
     fi
 
-    # Check for regular key strikes
     if [ "$key" = "" ]; then
-        echo "ENTER"
+        echo "5" # ENTER
     elif [ "$key" = "v" ] || [ "$key" = "V" ]; then
-        echo "VIEW"
+        echo "6" # VIEW
+    elif [ "$key" = "b" ] || [ "$key" = "B" ]; then
+        echo "7" # BYPASS
+    elif [ "$key" = "t" ] || [ "$key" = "T" ]; then
+        echo "8" # TOP
+    elif [ "$key" = "m" ] || [ "$key" = "M" ]; then
+        echo "9" # MOVE
+    elif [ "$key" = "g" ] || [ "$key" = "G" ]; then
+        echo "10" # GOTO
     elif [ "$key" = "q" ] || [ "$key" = "Q" ]; then
-        echo "QUIT"
+        echo "11" # QUIT
     else
-        echo "OTHER"
+        echo "0" # OTHER
     fi
 }
 
@@ -104,13 +100,13 @@ toggle_chain_drop() {
 }
 
 ##############################################################################
-# Control Module B: Group B Operations
+# Control Module B: Group B Core Actions
 ##############################################################################
 toggle_jump_bypass_by_row() {
     local base_chain="$1" target_row="$2" target_chain="$3"
     if [ -z "$target_chain" ] || grep -qE 'ACCEPT|DROP|REJECT|LOG|RETURN' <<< "$target_chain"; then
         echo -e "\n[ERROR] Row $target_row ($target_chain) is not a valid custom jump target."
-        sleep 1.5; return
+        sleep 1.2; return
     fi
     if grep -q "^-A $target_chain -j RETURN" "$TMP_SAVE" 2>/dev/null; then
         iptables -D "$target_chain" -j RETURN 2>/dev/null
@@ -148,7 +144,6 @@ move_rule_position() {
     fi
 }
 
-# High-speed modal pop-up to preview raw rules inside a specific custom chain
 view_custom_chain_rules() {
     local target_chain="$1"
     clear
@@ -175,7 +170,7 @@ view_custom_chain_rules() {
 }
 
 ##############################################################################
-# Menu Rendering Engine (Caching Optimized & Full English)
+# Menu Rendering Engine
 ##############################################################################
 
 # Sub-Menu 1: Group A Core Rules
@@ -222,11 +217,11 @@ menu_group_a() {
         done
 
         case $(get_key) in
-            UP)    ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
-            DOWN)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
-            LEFT)  break ;;
-            QUIT)  rm -f "$TMP_FLOW" "$TMP_SAVE"; exit 0 ;;
-            RIGHT|ENTER)
+            1)  ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
+            2)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
+            3)  break ;;
+            11) rm -f "$TMP_SAVE"; exit 0 ;;
+            4|5)
                 case "$cursor" in
                     0) toggle_all_drops ;;
                     1) toggle_default_policy ;;
@@ -264,11 +259,11 @@ action_on_row_menu() {
         done
 
         case $(get_key) in
-            UP)    ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
-            DOWN)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
-            LEFT)  break ;;
-            QUIT)  rm -f "$TMP_FLOW" "$TMP_SAVE"; exit 0 ;;
-            RIGHT|ENTER)
+            1)  ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
+            2)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
+            3)  break ;;
+            11) rm -f "$TMP_SAVE"; exit 0 ;;
+            4|5)
                 case "$cursor" in
                     0) toggle_jump_bypass_by_row "$base_chain" "$target_row" "$target_chain"; break ;;
                     1) move_to_top "$base_chain" "$target_row"; break ;;
@@ -280,28 +275,60 @@ action_on_row_menu() {
     done
 }
 
-# Sub-Menu 2: Pipeline view with Caching Architecture (Super Fast + V-Key + Q-Key Support)
+# Sub-Menu 2: Pipeline view using Fully Integrated Hotkey Architecture
 tune_specific_chain_flow_menu() {
     local base_chain="$1"
     local cursor=0
     local force_refresh=1
 
+    local arr_rows=()
+    local arr_targets=()
+    local arr_cleans=()
+    local arr_bypassed=()
+    local arr_has_drop=()
+    local count=0
+
     while true; do
         if [ "$force_refresh" -eq 1 ]; then
-            rm -f "$TMP_FLOW" "$TMP_SAVE"
-            iptables -L "$base_chain" -n --line-numbers | grep -E 'SAM|ICMP|VLAN|LOCAL|NETNS|BRIDGE|TCPIP' > "$TMP_FLOW"
+            rm -f "$TMP_SAVE"
             iptables -S > "$TMP_SAVE"
+
+            arr_rows=() ; arr_targets=() ; arr_cleans=() ; arr_bypassed=() ; arr_has_drop=()
+            count=0
+
+            while read -r r_num c_line; do
+                [ -z "$r_num" ] && continue
+                
+                local t_chain=$(grep "^-A $base_chain " "$TMP_SAVE" | sed -n "${r_num}p" | awk '{print $NF}')
+                
+                arr_rows[count]="$r_num"
+                arr_targets[count]="$t_chain"
+                arr_cleans[count]="$c_line"
+
+                if grep -q "^-A $t_chain -j RETURN" "$TMP_SAVE" 2>/dev/null; then
+                    arr_bypassed[count]=1
+                else
+                    arr_bypassed[count]=0
+                fi
+
+                if grep -q "^-A $t_chain -j DROP" "$TMP_SAVE" 2>/dev/null; then
+                    arr_has_drop[count]=1
+                else
+                    arr_has_drop[count]=0
+                fi
+
+                ((count++))
+            done < <(iptables -L "$base_chain" -n --line-numbers | grep -E 'SAM|ICMP|VLAN|LOCAL|NETNS|BRIDGE|TCPIP' | awk '{r=$1; $1=""; print r, $0}')
+            
             force_refresh=0
         fi
 
         clear
         echo "============================================================================================================="
-        echo "       [Group B] ${base_chain} Pipeline Flow ([↑/↓] Select Row, [→/ENTER] Tuning Actions, [V] View Sub-Rules)"
+        echo "       [Group B] ${base_chain} Pipeline Flow ([↑/↓] Browse, [→/ENTER] Ops Menu, [Q] Quit Entirely)"
         echo "============================================================================================================="
-        echo " Hotkeys: [↑/↓] Browse, [→/ENTER] Ops Menu, [V] Quick Peek Details, [←] Back, [Q] Quit Entirely"
+        echo " Hotkeys: [B] Bypass, [T] Row 1, [M] Move Row, [G] Go to Row, [V] Peek Rules, [←] Back"
         echo "-------------------------------------------------------------------------------------------------------------"
-
-        local count=$(wc -l < "$TMP_FLOW")
 
         if [ "$count" -eq 0 ]; then
             echo " [INFO] No managed custom jump rules detected in ${base_chain} chain."
@@ -313,23 +340,22 @@ tune_specific_chain_flow_menu() {
         [ $cursor -lt 0 ] && cursor=0
 
         local idx=0
-        while read -r line; do
-            local row_num=$(echo "$line" | awk '{print $1}')
-            local target_chain=$(grep "^-A $base_chain " "$TMP_SAVE" | sed -n "${row_num}p" | awk '{print $NF}')
-            local clean_line=$(echo "$line" | sed -E 's/^[0-9]+[[:space:]]+//')
+        for ((idx=0; idx<count; idx++)); do
+            local row_num="${arr_rows[idx]}"
+            local clean_line="${arr_cleans[idx]}"
             
             local type_str=""
             local status_str=""
             local color_start=""
             local color_end="\e[0m"
 
-            if is_chain_bypassed_cached "$target_chain"; then
+            if [ "${arr_bypassed[idx]}" -eq 1 ]; then
                 type_str="[Bypass]"
                 status_str="-> (SKIPPED)"
                 color_start="\e[1;33m"
             else
                 type_str="[ACTIVE]"
-                if chain_has_drop_cached "$target_chain"; then 
+                if [ "${arr_has_drop[idx]}" -eq 1 ]; then 
                     status_str="-> (DROP-ON)"
                     color_start="\e[1;31m"
                 else 
@@ -350,31 +376,58 @@ tune_specific_chain_flow_menu() {
             else
                 echo -e "${part_prefix}${color_start}${fmt_type}${color_end} ${fmt_row} ${fmt_rule} ${color_start}${status_str}${color_end}"
             fi
-
-            ((idx++))
-        done < "$TMP_FLOW"
+        done
         echo "============================================================================================================="
 
         case $(get_key) in
-            UP)    ((cursor--)); [ $cursor -lt 0 ] && cursor=$((count - 1)) ;;
-            DOWN)  ((cursor++)); [ $cursor -ge "$count" ] && cursor=0 ;;
-            LEFT)  break ;;
-            QUIT)  rm -f "$TMP_FLOW" "$TMP_SAVE"; exit 0 ;;
-            VIEW)
-                local sel_row=$(sed -n "$((cursor + 1))p" "$TMP_FLOW" | awk '{print $1}')
-                local sel_chain=$(grep "^-A $base_chain " "$TMP_SAVE" | sed -n "${sel_row}p" | awk '{print $NF}')
-                view_custom_chain_rules "$sel_chain"
+            1)  ((cursor--)); [ $cursor -lt 0 ] && cursor=$((count - 1)) ;;
+            2)  ((cursor++)); [ $cursor -ge "$count" ] && cursor=0 ;;
+            3)  break ;;
+            11) rm -f "$TMP_SAVE"; exit 0 ;;
+            7)
+                toggle_jump_bypass_by_row "$base_chain" "${arr_rows[cursor]}" "${arr_targets[cursor]}"
+                force_refresh=1
                 ;;
-            RIGHT|ENTER)
-                local sel_row=$(sed -n "$((cursor + 1))p" "$TMP_FLOW" | awk '{print $1}')
-                local sel_chain=$(grep "^-A $base_chain " "$TMP_SAVE" | sed -n "${sel_row}p" | awk '{print $NF}')
-                
-                action_on_row_menu "$base_chain" "$sel_row" "$sel_chain"
+            8)
+                move_to_top "$base_chain" "${arr_rows[cursor]}"
+                force_refresh=1
+                ;;
+            9)
+                move_rule_position "$base_chain" "${arr_rows[cursor]}"
+                force_refresh=1
+                ;;
+            10)
+                echo ""
+                printf "Go to Row Number: "
+                read -r target_num
+                if [[ "$target_num" =~ ^[0-9]+$ ]]; then
+                    local found=0
+                    for ((i=0; i<count; i++)); do
+                        if [ "${arr_rows[i]}" -eq "$target_num" ]; then
+                            cursor=$i
+                            found=1
+                            break
+                        fi
+                    done
+                    if [ "$found" -eq 0 ]; then
+                        echo "[ERROR] Row $target_num not found in the visible lists."
+                        sleep 1
+                    fi
+                else
+                    echo "[ERROR] Invalid row number format."
+                    sleep 1
+                fi
+                ;;
+            6)
+                view_custom_chain_rules "${arr_targets[cursor]}"
+                ;;
+            4|5)
+                action_on_row_menu "$base_chain" "${arr_rows[cursor]}" "${arr_targets[cursor]}"
                 force_refresh=1
                 ;;
         esac
     done
-    rm -f "$TMP_FLOW" "$TMP_SAVE"
+    rm -f "$TMP_SAVE"
 }
 
 # Sub-Menu 2-1: Base Chain Selector
@@ -399,11 +452,11 @@ menu_group_b() {
         done
 
         case $(get_key) in
-            UP)    ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
-            DOWN)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
-            LEFT)  break ;;
-            QUIT)  exit 0 ;;
-            RIGHT|ENTER)
+            1)  ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
+            2)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
+            3)  break ;;
+            11) exit 0 ;;
+            4|5)
                 case "$cursor" in
                     0) tune_specific_chain_flow_menu "INPUT" ;;
                     1) tune_specific_chain_flow_menu "OUTPUT" ;;
@@ -436,11 +489,11 @@ menu_group_c() {
         done
 
         case $(get_key) in
-            UP)    ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
-            DOWN)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
-            LEFT)  break ;;
-            QUIT)  exit 0 ;;
-            RIGHT|ENTER)
+            1)  ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
+            2)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
+            3)  break ;;
+            11) exit 0 ;;
+            4|5)
                 case "$cursor" in
                     0) 
                         echo ""
@@ -491,10 +544,10 @@ main_menu() {
         echo "=========================================================================="
 
         case $(get_key) in
-            UP)    ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
-            DOWN)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
-            QUIT)  exit 0 ;;
-            RIGHT|ENTER)
+            1)  ((cursor--)); [ $cursor -lt 0 ] && cursor=$((${#options[@]} - 1)) ;;
+            2)  ((cursor++)); [ $cursor -ge ${#options[@]} ] && cursor=0 ;;
+            11) exit 0 ;;
+            4|5)
                 case "$cursor" in
                     0) menu_group_a ;;
                     1) menu_group_b ;;
