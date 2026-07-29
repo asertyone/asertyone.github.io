@@ -1,0 +1,10 @@
+# Display systemd-resolved DNS settings and configuration status for the wlx288088fc7dbc Wi-Fi interface
+resolvectl status wlx288088fc7dbc
+
+# Query IPv6 DNS for 'google.com' (A record by default) using a specific upstream IPv6 DNS server, 
+# binding the source address to the first global IPv6 address of the wlx288088fc7dbc interface
+dig -6 @2a00:20:ee00:b21:a714:4f3f:79e7:93d7 google.com -b $(ip -6 addr show wlx288088fc7dbc | grep 'scope global' | head -n 1 | awk '{print $2}' | cut -d/ -f1)
+
+# Query IPv6 DNS for the AAAA (IPv6) record of 'one.one.one.one' using the same upstream DNS server, 
+# explicitly bound to the same local global IPv6 address
+dig -6 @2a00:20:ee00:b21:a714:4f3f:79e7:93d7 one.one.one.one AAAA -b $(ip -6 addr show wlx288088fc7dbc | grep 'scope global' | head -n 1 | awk '{print $2}' | cut -d/ -f1)
