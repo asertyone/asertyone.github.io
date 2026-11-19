@@ -1,0 +1,12 @@
+Rebooting, then run immediatedly:
+strace -p `pgrep QCMAP_ConnectionManager` -e trace=open,openat,write -f 2>&1 | grep -i "forwarding"
+
+
+In another windows,
+watch -n1 to check
+
+sysctl net.ipv6.conf.default.forwarding
+sysctl net.ipv6.conf.all.forwarding
+cat /proc/sys/net/ipv6/conf/default/forwarding
+cat /proc/sys/net/ipv6/conf/all/forwarding
+

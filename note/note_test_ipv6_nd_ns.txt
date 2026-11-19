@@ -1,0 +1,9 @@
+
+In default netns:
+tcpdump -i veth175.3 -nn -vv "icmp6 and (ip6[40] == 135 or ip6[40] == 136)"
+tcpdump -i veth175.3 -nn icmp6 and 'icmp6[0] == 135 or icmp6[0] == 136'
+
+
+In nswlan netns:
+ping -6 -c1 -I veth175.3 fd00::c0:a8:af:4
+
